@@ -1,9 +1,7 @@
 import React from 'react';
-import Navbar from './Navbar';
 const Header = () => {
     return (
         <div id="main">
-            <Navbar />
             <div className="name">
                 <h1><span>EverHustle</span></h1>
                 <div className="underline"></div>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import logo from '../images/EverHustle.PNG';
+import { Link } from 'react-router-dom';
 const Navbar = () => {
 
     const [nav, setNav] = useState(false)
@@ -25,11 +26,12 @@ const Navbar = () => {
             </label>
 
             <ul className="menu">
-                <li><a href="#" className="">Notes</a></li>
-                <li><a href="#">Articles</a></li>
-                <li><a href="#">Goals</a></li>
-                <li><a href="#">Reminders</a></li>
-                <li><a href="#">Timers</a></li>
+                <li><Link to="/notes">Notes</Link></li>
+                
+                <li><Link to="/articles">Articles</Link></li>
+                <li><Link to="/goals">Goals</Link></li>
+                <li><Link to="/reminders">Reminders</Link></li>
+                <li><Link to="/timers">Timers</Link></li>
                 
             </ul>
         </nav>
