@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from './Components/Navbar';
-import Notes from './Pages/Notes';
+import Notes from './Pages/Notes2';
 import Articles from './Pages/Articles'
 import Goals from "./Pages/Goals";
 import LandingPage from "./Pages/LandingPage";

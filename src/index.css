@@ -758,11 +758,15 @@ label {
   box-shadow: 1px 1px 10px -2px rgba(0, 0, 0, 0.7);
   transition: all linear 0.2s; 
 }
-.delete-item {
+.delete-item, .complete-item {
   float: right;
   background: none;
   cursor: pointer;
   transition: all linear 0.2s;
+}
+.complete-item:hover {
+  transform:rotateY(170deg); 
+  transition: all linear 0.2s; 
 }
 .delete-item:hover {
   transform:rotateY(170deg); 
@@ -787,4 +791,8 @@ label {
 #back-image-notes{
   float:left;
   width:10%;
+}
+
+#task-complete {
+  text-decoration: line-through;
 }

@@ -74,7 +74,7 @@ export class Notes extends Component {
                                             </div>  
                                             <div>
                                                 <ul class="collection" id="collection-lists">  
-                                            <NotesSub  task={this.state.tasks} filters={this.state.filter}/>
+                                            <NotesSub  task={this.state.tasks} filters={this.state.filter} />
                                               </ul>
                                             </div>
                                             <a href="#" className="clear-tasks btn black">CLear Tasks</a>                         
