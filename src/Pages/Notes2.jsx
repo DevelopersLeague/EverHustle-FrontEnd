@@ -14,8 +14,12 @@ function Notes2() {
     function onFormSubmit(e){
         e.preventDefault()
         console.log(tasks);
-        setTasks(oldTasks=>[...oldTasks,task])
-        setTask(''); 
+        if(task[0]!= ' ' && task!= '') {
+            alert(`A new Task ${task} is been added.`)
+            setTasks(oldTasks=>[...oldTasks,task])
+            setTask(''); 
+        }
+        
     }
     function onFilterChange(e){
         setFilter(e.target.value)
