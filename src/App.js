@@ -6,7 +6,8 @@ import Goals from "./Pages/Goals";
 import LandingPage from "./Pages/LandingPage";
 import Reminders from "./Pages/Reminders";
 import Timers from "./Pages/Timers"
-
+import Auth from "./Pages/Auth"
+import Signup from './Components/Signup'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -31,6 +32,12 @@ function App() {
         </Route>
         <Route path="/timers">
           <Timers />
+        </Route>
+        <Route path="/login">
+          <Auth />
+        </Route>
+        <Route path="/sign-up">
+          <Signup />
         </Route>
         <Route path="*">
           <LandingPage />

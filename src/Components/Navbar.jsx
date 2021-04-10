@@ -27,12 +27,11 @@ const Navbar = () => {
 
             <ul className="menu">
                 <li><Link to="/notes">Notes</Link></li>
-                
                 <li><Link to="/articles">Articles</Link></li>
                 <li><Link to="/goals">Goals</Link></li>
                 <li><Link to="/reminders">Reminders</Link></li>
                 <li><Link to="/timers">Timers</Link></li>
-                
+                <li><Link to="/login">Login</Link></li>
             </ul>
         </nav>
     )
