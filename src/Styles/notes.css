@@ -1,9 +1,14 @@
 @import url('../../node_modules/bootstrap/dist/css/bootstrap.min.css');
 /* @import url(../Styles/bootstrap.module.css); */
+body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .btn-note{
   background-color: #282c34 !important;
   border-radius: 5px;
-  padding: 1em;
+  padding: 0.7em;
   color: #fff !important;
   font-weight: 600;
   letter-spacing: 0.4em;
@@ -84,11 +89,12 @@ button .btn-note{
 @media (max-width: 600px) {
 
   .card-wrapper{
-    width: 150% !important;
+    width: 100vw !important;
     margin-bottom: 45px;
   }
 
   .notes-container{
     height: 100%;
+    padding: 40px;
   }
 }
