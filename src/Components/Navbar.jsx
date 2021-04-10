@@ -17,7 +17,7 @@ const Navbar = () => {
     window.addEventListener('scroll', changeBackground);
     return (
         <nav className={nav ? 'nav active': 'nav'}>
-            <a href="#" className="logo">
+            <a href="/" className="logo" style={{backgroundColor: 'inherit'}}>
                 <img src={logo} alt="" id="logo-img"/>
             </a>
             <input type="checkbox" id="menu-btn" className="menu-btn" />

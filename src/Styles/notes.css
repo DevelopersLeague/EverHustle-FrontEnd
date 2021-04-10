@@ -1,0 +1,91 @@
+@import url('../../node_modules/bootstrap/dist/css/bootstrap.min.css');
+/* @import url(../Styles/bootstrap.module.css); */
+
+.btn-note{
+  background-color: #282c34 !important;
+  border-radius: 5px;
+  padding: 1em;
+  color: #fff !important;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+}
+
+button .btn-note{
+  background-color: #282c34 !important;
+  border-radius: 5px;
+  padding: 0.2em !important;
+  color: #fff !important;
+  font-weight: 400;
+  letter-spacing: 0.4em; 
+}
+
+.header{
+  height: 200px;
+  width: 100%;
+  /* background-color: ; */
+  padding-top: 50px;
+}
+
+
+.heading-text{
+  display: block;
+  text-decoration: underline;
+  padding-bottom: 0.4em;
+}
+
+/* note card css */
+
+.card-wrapper{
+  width: 270px; 
+  height: 200px; 
+  box-shadow: 0px 10px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-wrapper:hover{
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-top{
+  width: 100%;
+  height: 2%;
+}
+
+.note-holder{
+  width: 100%;
+  height: 98%;
+  padding: 10px 10px;
+  display : flex;
+  background-color: #F6F7F8;
+  flex-direction: column;
+  position: relative;
+}
+
+.card-header{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 100px;
+  height: 30px;
+  padding: 1px 1px !important;
+  text-align: center;
+}
+
+/* #F6F7F8 */
+.notes-container{
+  height: 600px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #e9eef6;
+  padding : 40px 100px;
+}
+
+@media (max-width: 600px) {
+
+  .card-wrapper{
+    width: 150% !important;
+    margin-bottom: 45px;
+  }
+}

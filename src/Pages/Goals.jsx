@@ -1,8 +1,7 @@
 import NotesSub from '../Components/NotesSub';
 import calendar from '../images/edit calendar.png';
 import React, { useState } from 'react'
-import * as styles from './notes2.module.css'
-
+import '../Styles/goals.css'
 function Goals() {
     const [filter, setFilter] = useState('');
     const [task,setTask] = useState('');
@@ -40,11 +39,11 @@ function Goals() {
                                         <div className="row">
                                             {/* <div className={styles.heading}>test heading</div> */}
                                             <form id="task-form" onSubmit={onFormSubmit}>
-                                                <div className="input-field col s12">
+                                                <div className="input-field column s12">
                                                     <input type="text" name ="task" id="task" onChange={onTaskChange} value={task} />
                                                     <label className="task-label" for="task">New Task</label>
                                                 </div>
-                                                <button  class ="btn" >ADD TASK</button>
+                                                <button class ="add-task-btn" >ADD TASK</button>
                                             </form>
                                             </div>
                                             <div class="card-action">
@@ -58,7 +57,7 @@ function Goals() {
                                             <NotesSub  task={tasks} filters={filter} setTasks={setTasks}/>
                                               </ul>
                                             </div>
-                                            <a href="" className="clear-tasks btn black" onClick={onClearClick}>CLear Tasks</a>                         
+                                            <a href="" className="clear-tasks add-task-btn black" onClick={onClearClick}>CLear Tasks</a>                         
                                             </div>
                                     </div>
                                 </div>

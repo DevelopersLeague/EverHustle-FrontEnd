@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Styles/goals.css'
 
 function NotesSub(props) {
     const tasklist = props.task

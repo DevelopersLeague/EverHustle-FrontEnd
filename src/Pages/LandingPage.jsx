@@ -4,6 +4,7 @@ import Feature from '../Components/Features'
 import About from "../Components/About";
 import Contact from "../Components/Contact";
 import aboutImage from "../images/Phone.svg"
+import '../Styles/landingpage.css'
 
 const LandingPage = () => {
     return (
