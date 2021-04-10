@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../Styles/notes.css'
-import '../Styles/bootstrap.module.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import UpdateNotePopup from './Modals/UpdateNotePopup'
 
 const NotesCard = ({ noteObj, index, deleteNote, updateListArray }) => {

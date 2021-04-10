@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import '../../Styles/notes.css';
-// import '../../Styles/bootstrap.module.css';
-// import 'bootstrap/dist/css/bootstrap-grid.css.map';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../../Styles/notes.css'
-import '../../Styles/bootstrap.module.css';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
 const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj }) => {

@@ -1,6 +1,5 @@
 @import url('../../node_modules/bootstrap/dist/css/bootstrap.min.css');
 /* @import url(../Styles/bootstrap.module.css); */
-
 .btn-note{
   background-color: #282c34 !important;
   border-radius: 5px;
@@ -74,7 +73,7 @@ button .btn-note{
 
 /* #F6F7F8 */
 .notes-container{
-  height: 100vh;
+  height: 600px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
