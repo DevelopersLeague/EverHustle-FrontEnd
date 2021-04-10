@@ -5,7 +5,7 @@ const Header = () => {
             <div className="name">
                 <h1><span>EverHustle</span></h1>
                 <div className="underline"></div>
-                <h2> Your personalised productivity partner </h2>
+                <h4 className="mt-2"> Your personalised productivity partner </h4>
                 <p className="details">Feeling unproductive in lockdown? <br/> EverHustle will help you become a consistent hustler</p>
                
             </div>

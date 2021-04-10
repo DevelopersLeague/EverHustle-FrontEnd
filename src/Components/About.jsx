@@ -8,7 +8,7 @@ const About = (props) => {
             </div>
             <div className="about-text">
                 <h2>{props.title}</h2>
-                <p>You can use the application on any device: mobile, tablet, etc</p>
+                <p>You can use the application on any device: mobile, tablet</p>
             </div>
         </div>
     )

@@ -58,7 +58,7 @@ button .btn-note{
   height: 98%;
   padding: 10px 10px;
   display : flex;
-  background-color: #F6F7F8;
+  background-color: #fff;
   flex-direction: column;
   position: relative;
 }
@@ -74,7 +74,7 @@ button .btn-note{
 
 /* #F6F7F8 */
 .notes-container{
-  height: 600px;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -87,5 +87,9 @@ button .btn-note{
   .card-wrapper{
     width: 150% !important;
     margin-bottom: 45px;
+  }
+
+  .notes-container{
+    height: 100%;
   }
 }
