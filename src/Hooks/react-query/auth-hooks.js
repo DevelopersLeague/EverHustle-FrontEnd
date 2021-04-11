@@ -1,6 +1,7 @@
 import { useQueries, useMutation } from "react-query";
 import axios from "axios";
-const SERVER_BASE_URL = "http://localhost:8000/api/v1";
+// const SERVER_BASE_URL = "http://localhost:8000/api/v1";
+const SERVER_BASE_URL = "https://everhustle-server.herokuapp.com/api/v1";
 
 export const useLoginMutation = () => {
   const mutation = useMutation(async ({ email, password }) => {

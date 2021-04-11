@@ -3,9 +3,12 @@ import styles from "../Styles/authForm.module.css";
 // import { useLoginMutation,  } from "../Hooks/react-query/auth-hooks";
 import { axiosLogin } from "../Hooks/axios/auth";
 import { Redirect, useHistory } from "react-router-dom";
+import { useAuth } from "../context/auth.context";
 
 const Login = () => {
   //   const { mutate, isError, error, data } = useLoginMutation();
+  const history = useHistory();
+  const { actions } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
@@ -16,7 +19,9 @@ const Login = () => {
     setIsSubmitting(true);
     axiosLogin({ email, password })
       .then((data) => {
+        actions.login(data.token);
         console.log(JSON.stringify(data));
+        history.push("/notes");
       })
       .catch((err) => {
         setErrors((prev) => {

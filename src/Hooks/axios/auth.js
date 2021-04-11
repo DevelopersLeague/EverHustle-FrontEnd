@@ -1,5 +1,6 @@
 import axios from "axios";
-const SERVER_BASE_URL = "http://localhost:8000/api/v1";
+// const SERVER_BASE_URL = "http://localhost:8000/api/v1";
+const SERVER_BASE_URL = "https://everhustle-server.herokuapp.com/api/v1";
 
 export const axiosLogin = async ({ email, password }) => {
   try {
