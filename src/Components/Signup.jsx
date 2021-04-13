@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "../Styles/authForm.module.css";
 import mysvg from "../images/undraw_moving_forward.svg";
-import { signup } from "../Hooks/axios/auth";
 import { useMessages } from "../context/message.context";
 import { useFormik } from "formik";
 import { useSignupMutation } from "../Hooks/react-query/auth-hooks";
