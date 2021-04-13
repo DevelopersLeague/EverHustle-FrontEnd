@@ -27,7 +27,7 @@ const Navbar = () => {
       </label>
 
       <ul className="menu">
-        {authState.user ? <li>hello {authState.user.firstName}</li> : null}
+        {/* {authState.user ? <li>hello {authState.user.firstName}</li> : null} */}
         <li>
           <Link to="/notes">Notes</Link>
         </li>

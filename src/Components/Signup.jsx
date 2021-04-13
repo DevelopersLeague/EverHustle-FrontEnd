@@ -2,27 +2,32 @@ import React, { useState } from "react";
 import styles from "../Styles/authForm.module.css";
 import mysvg from "../images/undraw_moving_forward.svg";
 import { signup } from "../Hooks/axios/auth";
+import { useMessages } from "../context/message.context";
 import { useFormik } from "formik";
+import { useSignupMutation } from "../Hooks/react-query/auth-hooks";
 
 const Signup = () => {
-  const [successMessage, setSuccessMessage] = useState(undefined);
+  const { actions } = useMessages();
+  const { mutate } = useSignupMutation();
+  const successMessage = actions.getMessages("successMessage");
+  console.log(successMessage);
   const { handleChange, handleSubmit, errors, values } = useFormik({
     initialValues: { email: "", password: "", firstName: "", lastName: "" },
     onSubmit: (values, { resetForm }) => {
-      signup(values)
-        .then((data) => {
-          setSuccessMessage(data.message);
-          console.log(JSON.stringify(data));
-        })
-        .catch((err) => {
-          errors.email = err.message;
-        });
-      resetForm({});
+      mutate(
+        { ...values },
+        {
+          onSuccess: (data) => {
+            resetForm({});
+          },
+        }
+      );
     },
   });
 
   const customHandleChange = (e) => {
-    setSuccessMessage(undefined);
+    actions.removeMessages("successMessage");
+    actions.removeMessages("errorMessages");
     handleChange(e);
   };
 

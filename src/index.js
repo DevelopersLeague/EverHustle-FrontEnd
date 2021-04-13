@@ -3,17 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { AuthProvider } from "./context/auth.context";
-const client = new QueryClient();
+import { Provider } from "./provider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <QueryClientProvider client={client}>
-        <App />
-      </QueryClientProvider>
-    </AuthProvider>
+    <Provider>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
