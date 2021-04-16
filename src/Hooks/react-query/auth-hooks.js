@@ -1,8 +1,9 @@
 import { useQueries, useMutation } from "react-query";
 import axios from "axios";
 import { useMessages } from "../../context/message.context";
-const SERVER_BASE_URL = "http://localhost:8000/api/v1";
+// const SERVER_BASE_URL = "http://localhost:8000/api/v1";
 // const SERVER_BASE_URL = "https://everhustle-server.herokuapp.com/api/v1";
+const SERVER_BASE_URL = process.env.REACT_APP_SERVER_BASE_URL
 
 export const useLoginMutation = () => {
   const { actions } = useMessages();
