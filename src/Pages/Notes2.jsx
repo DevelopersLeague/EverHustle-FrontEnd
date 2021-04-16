@@ -62,7 +62,7 @@ const Notes2 = () => {
     return (
         <>
             <header className="header text-center my-4 ">
-                <div className="heading-text">
+                <div className="heading_text">
                     <h3>Notes</h3>
                 </div>
                 <button className="btn-note" onClick={()=>setModal(true)}>Create Note</button>

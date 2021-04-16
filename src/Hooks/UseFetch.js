@@ -1,14 +1,4 @@
 import { useState, useEffect } from "react";
-// if (loading1 || loading2 || loading3)
-/*
-  {
-    <div className="loading"></div>
-  }
-
-  return (
-    <section></section>
-  )
-*/
 export const useFetch = (url) => {
   const [loading, setLoading] = useState(true);
   const [data, setProducts] = useState([]);
