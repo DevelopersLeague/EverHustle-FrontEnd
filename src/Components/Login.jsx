@@ -9,7 +9,7 @@ import { useMessages } from "../context/message.context";
 const Login = () => {
   const { actions } = useMessages();
   const errorMessage = actions.getMessages("errorMessage");
-  const { mutate } = useLoginMutation();
+  const { mutate, isLoading } = useLoginMutation();
   const history = useHistory();
   const auth = useAuth();
   const { values, handleChange, handleSubmit } = useFormik({
@@ -66,7 +66,9 @@ const Login = () => {
         </div>
         <div class={styles.form_row}></div>
         <div class={styles.form_row}>
-          <button type="submit">login</button>
+          <button type="submit">
+            {isLoading?"loading...":"log in"}
+          </button>
         </div>
       </form>
     </div>

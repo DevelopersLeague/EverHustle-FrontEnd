@@ -7,7 +7,7 @@ import { useSignupMutation } from "../Hooks/react-query/auth-hooks";
 
 const Signup = () => {
   const { actions } = useMessages();
-  const { mutate } = useSignupMutation();
+  const { mutate, isLoading } = useSignupMutation();
   const successMessage = actions.getMessages("successMessage");
   const errorMessage = actions.getMessages("errorMessage");
   const { handleChange, handleSubmit, errors, values } = useFormik({
@@ -99,7 +99,9 @@ const Signup = () => {
             </div>
             <div class={styles.form_row}></div>
             <div class={styles.form_row}>
-              <button type="submit">sign up</button>
+              <button type="submit">
+                {isLoading ? "loading..." : "sign up"}
+              </button>
             </div>
           </form>
           <div class="socials-wrapper">
