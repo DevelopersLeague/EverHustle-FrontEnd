@@ -15,7 +15,7 @@ const Auth = () => {
                 <Login/>
         {/* <!-- login form here --> */}
                 <div class="socials-wrapper">
-                        <h3>Don't have an account? Sign-up <a href="/sign-up">here</a></h3>
+                        <h3>Don't have an account? Sign-up <Link to="/sign-up">here</Link></h3>
                 </div>
             </div>
             </div>

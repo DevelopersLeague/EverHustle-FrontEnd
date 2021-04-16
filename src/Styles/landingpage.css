@@ -20,6 +20,14 @@
   letter-spacing: 2px;
   color: #000000;
 }
+
+.name h3{
+  font-family: "Montserrat";
+  font-size: 1.3rem !important;
+  margin: 0px;
+  letter-spacing: 2px;
+  color: #000000;
+}
 .header-btns {
   display: flex;
   margin-top: 40px;
@@ -499,7 +507,7 @@
 }
 
 .underline {
-  width: 14rem;
+  width: 14rem !important;
   height: .25rem;
   background: #49a6e9;
   margin-left: 0rem;
