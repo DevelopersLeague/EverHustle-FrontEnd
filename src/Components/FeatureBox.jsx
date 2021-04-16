@@ -8,7 +8,7 @@ const FeatureBox = (props) => {
                     <img src={props.image} />
                 </div>
                 <div className="s-b-text">
-                    <h2>{props.title} </h2>
+                    <h3>{props.title} </h3>
                     <p>{props.text}</p>
                 </div>
             </div>
