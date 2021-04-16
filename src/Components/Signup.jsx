@@ -9,7 +9,7 @@ const Signup = () => {
   const { actions } = useMessages();
   const { mutate } = useSignupMutation();
   const successMessage = actions.getMessages("successMessage");
-  console.log(successMessage);
+  const errorMessage = actions.getMessages("errorMessage");
   const { handleChange, handleSubmit, errors, values } = useFormik({
     initialValues: { email: "", password: "", firstName: "", lastName: "" },
     onSubmit: (values, { resetForm }) => {
@@ -41,6 +41,7 @@ const Signup = () => {
           {/* <div> */}
           <form method="POST" autocomplete="off" onSubmit={handleSubmit}>
             {successMessage ? <p>{successMessage}</p> : null}
+            {errorMessage ? <p>{errorMessage}</p> : null}
             <div class={styles.form_row}>
               <input
                 type="text"
