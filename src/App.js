@@ -40,9 +40,9 @@ function App() {
         <Route path="/sign-up">
           <Signup />
         </Route>
-        <Route path="/test">
+        {/* <Route path="/test">
           <Test />
-        </Route>
+        </Route> */}
         <Route path="*">
           <LandingPage />
         </Route>
