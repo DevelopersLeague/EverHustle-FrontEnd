@@ -10,6 +10,7 @@ import Auth from "./Pages/Auth";
 import Signup from "./Components/Signup";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Test } from "./Pages/Test";
+import AuthGuard from "./Components/AuthGuard";
 
 function App() {
   return (
@@ -41,7 +42,9 @@ function App() {
           <Signup />
         </Route>
         {/* <Route path="/test">
-          <Test />
+          <AuthGuard to="/timers">
+            <Test />
+          </AuthGuard>
         </Route> */}
         <Route path="*">
           <LandingPage />
