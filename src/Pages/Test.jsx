@@ -1,15 +1,15 @@
 import React from "react";
 import { useQueryClient } from "react-query";
 import {
-  useGetAllNotesQuery,
-  useCreateOneNoteMuatation,
-  useUpdateOneNoteMuatation,
-  useDeleteOneNoteMuatation,
-} from "../Hooks/react-query/notes-hooks";
+  useGetAllGoalsQuery,
+  useCreateOneGoalMuatation,
+  useUpdateOneGoalMuatation,
+  useDeleteOneGoalMuatation,
+} from "../Hooks/react-query/goals-hooks";
 
 export function Test() {
-  const { data, isLoading } = useGetAllNotesQuery();
-  const { mutate } = useUpdateOneNoteMuatation();
+  const { data, isLoading } = useGetAllGoalsQuery();
+  const { mutate } = useUpdateOneGoalMuatation();
   const queryClient = useQueryClient();
 
   return (
@@ -20,13 +20,13 @@ export function Test() {
           e.preventDefault();
           mutate(
             {
-              id: data.notes[0].id,
-              title: "update title",
-              content: "update content",
+              id: data.goals[0].id,
+              title: "new new new",
+              isCompleted: true,
             },
             {
               onSuccess: () => {
-                queryClient.invalidateQueries("notes");
+                queryClient.invalidateQueries("goals");
               },
             }
           );
@@ -37,7 +37,12 @@ export function Test() {
       {isLoading ? (
         <p>loading</p>
       ) : (
-        data.notes.map((note) => <p>{note.title}</p>)
+        data.goals.map((note) => (
+          <>
+            <p>{note.title}</p>
+            <p>{note.isCompleted ? "complete" : "incomplete"}</p>
+          </>
+        ))
       )}
     </div>
   );

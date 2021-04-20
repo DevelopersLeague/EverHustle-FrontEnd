@@ -42,9 +42,7 @@ function App() {
           <Signup />
         </Route>
         {/* <Route path="/test">
-          <AuthGuard to="/timers">
-            <Test />
-          </AuthGuard>
+          <Test />
         </Route> */}
         <Route path="*">
           <LandingPage />

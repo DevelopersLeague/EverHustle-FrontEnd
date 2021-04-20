@@ -3,10 +3,10 @@ import axios from "axios";
 
 const SERVER_BASE_URL = process.env.REACT_APP_SERVER_BASE_URL;
 
-export const useGetAllNotesQuery = () => {
-  return useQuery(["notes", "getAll"], async () => {
+export const useGetAllGoalsQuery = () => {
+  return useQuery(["goals", "getAll"], async () => {
     try {
-      const res = await axios.get(`${SERVER_BASE_URL}/notes`, {
+      const res = await axios.get(`${SERVER_BASE_URL}/goals`, {
         headers: { Authorization: localStorage.getItem("authToken") },
       });
       console.log("axios resp: ", res);
@@ -18,11 +18,11 @@ export const useGetAllNotesQuery = () => {
   });
 };
 
-export const useCreateOneNoteMuatation = () => {
+export const useCreateOneGoalMuatation = () => {
   return useMutation(async ({ title, content, category }) => {
     try {
       const res = await axios.post(
-        `${SERVER_BASE_URL}/notes`,
+        `${SERVER_BASE_URL}/goals`,
         { title, content, category },
         {
           headers: { Authorization: localStorage.getItem("authToken") },
@@ -37,10 +37,10 @@ export const useCreateOneNoteMuatation = () => {
   });
 };
 
-export const useDeleteOneNoteMuatation = () => {
+export const useDeleteOneGoalMuatation = () => {
   return useMutation(async ({ id }) => {
     try {
-      const res = await axios.delete(`${SERVER_BASE_URL}/notes/${id}`, {
+      const res = await axios.delete(`${SERVER_BASE_URL}/goals/${id}`, {
         headers: { Authorization: localStorage.getItem("authToken") },
       });
       console.log("axios resp: ", res);
@@ -52,16 +52,17 @@ export const useDeleteOneNoteMuatation = () => {
   });
 };
 
-export const useUpdateOneNoteMuatation = () => {
-  return useMutation(async ({ id, title, content, category }) => {
+export const useUpdateOneGoalMuatation = () => {
+  return useMutation(async ({ id, title, content, category, isCompleted }) => {
     const data = {};
     data.title = title ? title : undefined;
     data.content = content ? content : undefined;
     data.category = category ? category : undefined;
-    // console.log(data);
+    data.isCompleted = isCompleted !== undefined ? isCompleted : undefined;
+    console.log(data);
     try {
       const res = await axios.put(
-        `${SERVER_BASE_URL}/notes/${id}`,
+        `${SERVER_BASE_URL}/goals/${id}`,
         { ...data },
         {
           headers: { Authorization: localStorage.getItem("authToken") },
