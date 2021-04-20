@@ -2,14 +2,14 @@ import React from "react";
 import { useQueryClient } from "react-query";
 import {
   useGetAllGoalsQuery,
-  useCreateOneGoalMuatation,
-  useUpdateOneGoalMuatation,
-  useDeleteOneGoalMuatation,
+  useCreateOneGoalMutation,
+  useUpdateOneGoalMutation,
+  useDeleteOneGoalMutation,
 } from "../Hooks/react-query/goals-hooks";
 
 export function Test() {
   const { data, isLoading } = useGetAllGoalsQuery();
-  const { mutate } = useUpdateOneGoalMuatation();
+  const { mutate } = useUpdateOneGoalMutation();
   const queryClient = useQueryClient();
 
   return (

@@ -18,7 +18,7 @@ export const useGetAllGoalsQuery = () => {
   });
 };
 
-export const useCreateOneGoalMuatation = () => {
+export const useCreateOneGoalMutation = () => {
   return useMutation(async ({ title, content, category }) => {
     try {
       const res = await axios.post(
@@ -37,7 +37,7 @@ export const useCreateOneGoalMuatation = () => {
   });
 };
 
-export const useDeleteOneGoalMuatation = () => {
+export const useDeleteOneGoalMutation = () => {
   return useMutation(async ({ id }) => {
     try {
       const res = await axios.delete(`${SERVER_BASE_URL}/goals/${id}`, {
@@ -52,7 +52,7 @@ export const useDeleteOneGoalMuatation = () => {
   });
 };
 
-export const useUpdateOneGoalMuatation = () => {
+export const useUpdateOneGoalMutation = () => {
   return useMutation(async ({ id, title, content, category, isCompleted }) => {
     const data = {};
     data.title = title ? title : undefined;

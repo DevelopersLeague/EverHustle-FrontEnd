@@ -18,7 +18,7 @@ export const useGetAllNotesQuery = () => {
   });
 };
 
-export const useCreateOneNoteMuatation = () => {
+export const useCreateOneNoteMutation = () => {
   return useMutation(async ({ title, content, category }) => {
     try {
       const res = await axios.post(
@@ -37,7 +37,7 @@ export const useCreateOneNoteMuatation = () => {
   });
 };
 
-export const useDeleteOneNoteMuatation = () => {
+export const useDeleteOneNoteMutation = () => {
   return useMutation(async ({ id }) => {
     try {
       const res = await axios.delete(`${SERVER_BASE_URL}/notes/${id}`, {
@@ -52,7 +52,7 @@ export const useDeleteOneNoteMuatation = () => {
   });
 };
 
-export const useUpdateOneNoteMuatation = () => {
+export const useUpdateOneNoteMutation = () => {
   return useMutation(async ({ id, title, content, category }) => {
     const data = {};
     data.title = title ? title : undefined;
