@@ -56,7 +56,7 @@ function Goals() {
                                             <NotesSub  task={tasks} filters={filter} setTasks={setTasks}/>
                                               </ul>
                                             </div>
-                                            <a href="" className="clear-tasks add-task-btn black" onClick={onClearClick}>CLear Tasks</a>                         
+                                            <button className="clear-tasks add-task-btn black" onClick={onClearClick}>CLear Tasks</button>                         
                                             </div>
                                     </div>
                                 </div>
