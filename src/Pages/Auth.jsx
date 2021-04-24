@@ -8,7 +8,7 @@ const Auth = () => {
         <div className={styles.mega_wrapper}>
             <div className={styles.contact_wrapper}>
                 <div className={styles.left_side}>
-                    <img src={mysvg} width="92%" />
+                    <img src={mysvg} width="92%" alt="svg"/>
                 </div>
                 <div className={styles.right_side}>
                 <h2>Account Login</h2>

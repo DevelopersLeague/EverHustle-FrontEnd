@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useFetch } from "../Hooks/UseFetch";
 import '../Styles/articles.css'
 const Articles = () => {
 

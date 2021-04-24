@@ -5,7 +5,7 @@ const FeatureBox = (props) => {
         <div>
             <div className="a-box">
                 <div className="a-b-img">
-                    <img src={props.image} />
+                    <img src={props.image} alt="feature-image"/>
                 </div>
                 <div className="s-b-text">
                     <h3>{props.title} </h3>
