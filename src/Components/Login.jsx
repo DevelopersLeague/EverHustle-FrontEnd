@@ -32,7 +32,7 @@ const Login = () => {
     <div>
       <form method="POST" autocomplete="off" onSubmit={handleSubmit}>
         {errorMessage ? <p>{errorMessage}</p> : null}
-        <div class={styles.form_row}>
+        <div className={styles.form_row}>
           <input
             type="text"
             name="email"
@@ -43,12 +43,12 @@ const Login = () => {
               handleChange(e);
             }}
             autoComplete="off"
-            aria-autoComplete="off"
+            aria-autoComplete="none"
             value={values.email}
           />
           <span>Username or Email</span>
         </div>
-        <div class={styles.form_row}>
+        <div className={styles.form_row}>
           <input
             type="password"
             name="password"
@@ -59,13 +59,13 @@ const Login = () => {
             }}
             required
             autoComplete="off"
-            aria-autoComplete="off"
+            aria-autoComplete="none"
             value={values.password}
           />
           <span>Password</span>
         </div>
-        <div class={styles.form_row}></div>
-        <div class={styles.form_row}>
+        <div className={styles.form_row}></div>
+        <div className={styles.form_row}>
           <button type="submit">
             {isLoading?"loading...":"log in"}
           </button>

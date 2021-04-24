@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import CreateNotePopup from '../Components/Modals/CreateNotePopup';
 import NotesCard from '../Components/NotesCard'
-// import '../Styles/bootstrap.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import {header}"bootstrap/dist/css/bootstrap.css";
 import '../Styles/notes.css'
 const Notes2 = () => {
     const [modal, setModal] = useState(false)
@@ -33,7 +31,7 @@ const Notes2 = () => {
             setNoteList(jsonObj)
         }
 
-        console.clear()
+        // console.clear()
     }, []);
 
     const saveNote = (noteObj) => {
