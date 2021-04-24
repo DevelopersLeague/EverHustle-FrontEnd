@@ -2,9 +2,9 @@ import React from "react";
 import { useQueryClient } from "react-query";
 import {
   useGetAllGoalsQuery,
-  useCreateOneGoalMutation,
+  // useCreateOneGoalMutation,
   useUpdateOneGoalMutation,
-  useDeleteOneGoalMutation,
+  // useDeleteOneGoalMutation,
 } from "../Hooks/react-query/goals-hooks";
 
 export function Test() {
