@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../Styles/authForm.module.css";
 import mysvg from "../images/undraw_moving_forward.svg";
 import { useMessages } from "../context/message.context";
@@ -34,7 +34,7 @@ const Signup = () => {
     <div className={styles.mega_wrapper}>
       <div className={styles.contact_wrapper}>
         <div className={styles.left_side}>
-          <img src={mysvg} width="92%" height="120%" />
+          <img src={mysvg} width="92%" height="120%" alt="svg"/>
         </div>
         <div className={styles.right_side}>
           <h2>Create Account</h2>
@@ -51,7 +51,7 @@ const Signup = () => {
                 id="firstName"
                 onChange={customHandleChange}
                 value={values.firstName}
-                aria-autoComplete="off"
+                aria-autocomplete="none"
               />
               <span>Fname</span>
             </div>
@@ -61,7 +61,7 @@ const Signup = () => {
                 type="text"
                 required
                 autoComplete="off"
-                aria-autoComplete="off"
+                aria-autocomplete="none"
                 name="lastName"
                 id="lastName"
                 onChange={customHandleChange}
@@ -75,7 +75,7 @@ const Signup = () => {
                 type="email"
                 required
                 autoComplete="off"
-                aria-autoComplete="off"
+                aria-autocomplete="none"
                 name="email"
                 id="email"
                 onChange={customHandleChange}
@@ -89,7 +89,7 @@ const Signup = () => {
                 type="password"
                 required
                 autoComplete="off"
-                aria-autoComplete="off"
+                aria-autocomplete="none"
                 name="password"
                 id="password"
                 onChange={customHandleChange}
