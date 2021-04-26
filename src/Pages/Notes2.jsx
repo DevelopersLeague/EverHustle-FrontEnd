@@ -1,8 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import CreateNotePopup from '../Components/Modals/CreateNotePopup';
 import NotesCard from '../Components/NotesCard'
+import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../Styles/notes.css'
+
+const SERVER_BASE_URL = process.env.REACT_APP_SERVER_BASE_URL;
+
+const api = axios.create(
+    {
+        baseURL: `${SERVER_BASE_URL}/notes`,
+        
+            headers: {
+                Authorization: localStorage.getItem("authToken"),
+            },
+        
+    }
+)
+
 const Notes2 = () => {
     const [modal, setModal] = useState(false)
     const [noteList, setNoteList] = useState([])
@@ -21,6 +36,12 @@ const Notes2 = () => {
 
     // fetching noteList from localstorage using useEffect
     useEffect(() => {
+        api.get('')
+            .then(res => {
+            setNoteList(res.data.notes)
+            console.log(res);
+        })
+        /*
         let arr = localStorage.getItem("noteList")
 
         // if noteList item is available
@@ -30,10 +51,11 @@ const Notes2 = () => {
 
             setNoteList(jsonObj)
         }
-
+        */
         // console.clear()
     }, []);
 
+    
     const saveNote = (noteObj) => {
         let tempList = noteList
         tempList.push(noteObj)
@@ -57,6 +79,8 @@ const Notes2 = () => {
         // toggle()
         // window.location.reload()
     }
+
+    
     return (
         <>
             <header className="header text-center my-4 ">
