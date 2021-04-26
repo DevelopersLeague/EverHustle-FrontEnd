@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import Contact from '../Components/Contact'
+
 import '../Styles/articles.css'
 const Articles = () => {
 
@@ -92,6 +94,8 @@ const Articles = () => {
                 }
                 </section>
             </div>
+
+            <Contact/>
         </>
     )
 }

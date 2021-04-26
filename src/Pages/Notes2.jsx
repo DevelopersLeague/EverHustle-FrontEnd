@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import CreateNotePopup from '../Components/Modals/CreateNotePopup';
 import NotesCard from '../Components/NotesCard'
 import axios from 'axios'
+import Contact from '../Components/Contact'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../Styles/notes.css'
 
@@ -95,7 +96,7 @@ const Notes2 = () => {
                 }
             </div>
             <CreateNotePopup toggle={toggle} modal={modal} saveNote={saveNote}/>
-
+            <Contact/>
         </>
     )
 }

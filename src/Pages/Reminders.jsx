@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import GitHubButton from 'react-github-btn' // will be used in footer
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import Contact from '../Components/Contact'
 
 import {Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
@@ -186,6 +186,8 @@ const Reminders = () => {
              {/* </form> */}
             </Modal>
         </section>
+
+        <Contact/>
         </>
     )
 }
