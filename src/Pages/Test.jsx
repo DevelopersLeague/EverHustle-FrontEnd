@@ -1,15 +1,15 @@
 import React from "react";
 import { useQueryClient } from "react-query";
 import {
-  useGetAllGoalsQuery,
-  // useCreateOneGoalMutation,
-  useUpdateOneGoalMutation,
-  // useDeleteOneGoalMutation,
-} from "../Hooks/react-query/goals-hooks";
+  useCreateOneFocustimeMutation,
+  useGetTotalFocustimeByDateQuery,
+} from "../Hooks/react-query/focustime-hooks";
 
 export function Test() {
-  const { data, isLoading } = useGetAllGoalsQuery();
-  const { mutate } = useUpdateOneGoalMutation();
+  const { data, isLoading } = useGetTotalFocustimeByDateQuery(
+    new Date().toISOString().split("T")[0]
+  );
+  const { mutate } = useCreateOneFocustimeMutation();
   const queryClient = useQueryClient();
 
   return (
@@ -20,13 +20,12 @@ export function Test() {
           e.preventDefault();
           mutate(
             {
-              id: data.goals[0].id,
-              title: "new new new",
-              isCompleted: true,
+              time: "03:59:59",
+              date: new Date().toISOString().split("T")[0],
             },
             {
               onSuccess: () => {
-                queryClient.invalidateQueries("goals");
+                queryClient.invalidateQueries("focustime");
               },
             }
           );
@@ -37,12 +36,16 @@ export function Test() {
       {isLoading ? (
         <p>loading</p>
       ) : (
-        data.goals.map((note) => (
-          <>
-            <p>{note.title}</p>
-            <p>{note.isCompleted ? "complete" : "incomplete"}</p>
-          </>
-        ))
+        // data.reminders.map((item) => (
+        //   <>
+        //     <p>{item.title}</p>
+        //     <p>{item.timestamp}</p>
+        //   </>
+        // ))
+        <div>
+          <p>{data.time}</p>
+          <p>{data.date}</p>
+        </div>
       )}
     </div>
   );
