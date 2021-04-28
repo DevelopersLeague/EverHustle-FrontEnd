@@ -19,7 +19,7 @@ export const useGetAllRemindersQuery = () => {
 };
 
 /**
- * dateStr must be in iso string format
+ * dateStr:string must be in iso string format in utc
  */
 export const useGetAllRemindersByDateQuery = (dateStr) => {
   return useQuery(["reminders", "getAll", "byDate"], async () => {
@@ -37,6 +37,9 @@ export const useGetAllRemindersByDateQuery = (dateStr) => {
   });
 };
 
+/**
+ * timestamp: string, must be in iso date format utc
+ */
 export const useCreateOneReminderMutation = () => {
   return useMutation(async ({ title, content, category, timestamp }) => {
     try {
@@ -71,6 +74,9 @@ export const useDeleteOneReminderMutation = () => {
   });
 };
 
+/**
+ * timestamp: string, must be in iso date format utc
+ */
 export const useUpdateOneReminderMutation = () => {
   return useMutation(async ({ id, title, content, category, timestamp }) => {
     const data = {};

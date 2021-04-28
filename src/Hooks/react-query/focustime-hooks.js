@@ -3,6 +3,10 @@ import axios from "axios";
 
 const SERVER_BASE_URL = process.env.REACT_APP_SERVER_BASE_URL;
 
+/**
+ * date:string must be in iso date format in utc
+ * time:string must be in hh:mm:ss format
+ */
 export const useCreateOneFocustimeMutation = () => {
   return useMutation(async ({ time, date }) => {
     try {
@@ -23,7 +27,7 @@ export const useCreateOneFocustimeMutation = () => {
 };
 
 /**
- * date must be in iso stirng format
+ * dateStr must be in iso string format
  */
 export const useGetTotalFocustimeByDateQuery = (dateStr) => {
   return useQuery(["focustime", "getAll", "byDate"], async () => {
