@@ -79,6 +79,10 @@ const Reminders = () => {
       // probably iso strig to be added here
       date: (+newEventDate),
     //   category: "NA"
+      extra: {
+        // max 16 chars before overflow
+        text: newEventText
+      }
     }
 
     var temp = eventList
@@ -169,8 +173,8 @@ const Reminders = () => {
                 
                 <div className="">
                   <label htmlFor="event-text">Text </label>
-					<input
-					className="event-text form-control"				
+                  <input
+                  className="event-text form-control"				
                     type='text'
                     value={newEventText}
                     onChange={(e) => setNewEventText(e.target.value)}
@@ -180,9 +184,9 @@ const Reminders = () => {
                 </ModalBody>
                 <ModalFooter>
 				<button className="btn-note colorPickerBtn" disabled={newEventName === ''} onClick={addEvent}>Create!</button>
-                <button className="btn-note">Cancel</button>
+                <button className="btn-note" onClick={()=> setShowAddEventModal(false)}>Cancel</button>
 				</ModalFooter>
-					<div onClick={()=> setShowAddEventModal(false)}/>
+					{/* <div /> */}
              {/* </form> */}
             </Modal>
         </section>
