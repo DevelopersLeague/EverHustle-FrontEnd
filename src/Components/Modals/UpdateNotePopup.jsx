@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import '../../Styles/notes.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {useUpdateOneNoteMutation} from '../../Hooks/react-query/notes-hooks'
+import {useQueryClient} from 'react-query'
+const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj, setModal }) => {
 
-
-const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj }) => {
-
-    const [noteName, setNoteName] = useState('')
-    const [noteDesc, setNoteDesc] = useState('')
+    const [noteName, setNoteName] = useState(noteObj.title)
+    const [noteDesc, setNoteDesc] = useState(noteObj.content)
+    const updateMutation = useUpdateOneNoteMutation()
+    const client = useQueryClient() // for managing cache
 
     const handleChange = (e) => {
         
@@ -19,20 +21,23 @@ const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj }) => {
             setNoteDesc(value)
     }
 
+    /*
     useEffect(() => {
         // update states
         setNoteName(noteObj.Name)
         setNoteDesc(noteObj.Description)
     }, [noteObj.Description, noteObj.Name])
-
+    */
     const handleUpdate = (e) => {
-        e.preventDefault();
-        let tempObj = {}
-        // creating property
-        tempObj['Name'] = noteName
-        tempObj['Description'] = noteDesc
-        // saveNote(noteObj)
-        updateNote(tempObj)
+        // e.preventDefault();
+        updateMutation.mutate({id: noteObj.id ,title: noteName, content: noteDesc }, {
+            onSuccess: () => {
+                client.invalidateQueries('notes')
+                setModal(false)
+            }
+        })
+        
+        // updateNote(tempObj)
     }
 
     return (
@@ -54,7 +59,7 @@ const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj }) => {
 
                 </ModalBody>
                 <ModalFooter>
-                <button className="btn-note" type="button" onClick={handleUpdate}>Update!</button>{' '}
+                <button className="btn-note" type="button" onClick={handleUpdate} >{updateMutation.isLoading?"Loading":"Update"}</button>{' '}
                 <button className="btn-note" type="button" onClick={toggle}>Cancel</button>
                 </ModalFooter>
             </Modal>
