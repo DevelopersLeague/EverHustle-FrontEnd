@@ -5,6 +5,10 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 
+a{
+  text-decoration: none;
+}
+
 .btn-note{
   background-color: #282c34 !important;
   border-radius: 5px;

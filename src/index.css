@@ -86,6 +86,7 @@ nav ul li a {
   letter-spacing: 1px;
   border-radius: 3px;
   transition: 0.2s ease-in-out;
+  text-decoration: none;
 }
 nav ul li a:hover {
   background-color: #00b7ff;

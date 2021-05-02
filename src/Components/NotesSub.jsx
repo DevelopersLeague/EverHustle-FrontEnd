@@ -1,44 +1,64 @@
+import {useDeleteOneGoalMutation, useUpdateOneGoalMutation} from '../Hooks/react-query/goals-hooks';
+import {useQueryClient} from 'react-query';
 import React from 'react'
 import '../Styles/goals.css'
 
 function NotesSub(props) {
+    const {mutate, isLoading} = useDeleteOneGoalMutation();
+    const client = useQueryClient();
+    const updateMutation = useUpdateOneGoalMutation();
     const tasklist = props.task
-    const filterString = props.filters
-    console.log(filterString)
+    // const filterString = props.filters
+    // console.log(filterString)
     let taskOutput = []
     function makeOnDelete(taskInput){
         return function onDelete(e){
-            let newTasks = tasklist.filter((oneTask)=>oneTask!==taskInput)
-            props.setTasks(newTasks);
+            mutate({
+                id : taskInput.id
+            },
+            {
+                onSuccess : ()=>{
+                    client.invalidateQueries('goals');            
+                }
+            });
+
         }
     }
-    function onComplete(e) {
-        e.target.parentElement.id = 'task-complete'
-        console.log(e.target.parentElement.id)
+    function makeOnComplete(taskInput) {
+        return function onComplete(e){
+            updateMutation.mutate({
+                id: taskInput.id,
+                isCompleted : !taskInput.isCompleted
+            },
+            {
+                onSuccess : ()=>{
+                    client.invalidateQueries('goals');            
+                } 
+            })
+        }
     }
-    if(filterString === ''){
-        taskOutput = tasklist.map(
-                task => <li className="collection-item">
-                    {task}
-                <button className="complete-item fa fa-check-circle" onClick={onComplete} />
-                <button className="delete-item fa fa-remove" onClick={makeOnDelete(task)} />                                            
+   
+        taskOutput = tasklist.filter((task)=>{return task.category == props.category;}).map(
+                task => <li className="collection-item" id={task.isCompleted?"task-complete":""}>
+                    {task.title}
+                    {
+                        isLoading || updateMutation.isLoading
+                        ?     null
+                        : (<>
+                        <button className="complete-item fa fa-check-circle" onClick={makeOnComplete(task)} />
+                        <button className="delete-item fa fa-remove" onClick={makeOnDelete(task)} /> 
+                        </>)
+                    }
+                                                           
                     </li>
             )
-    } else {
-        tasklist.forEach(element => {
-            if(element.includes(filterString)) {
-                taskOutput.push(<li className="collection-item">{element}
-                <button className="complete-item fa fa-check-circle" />                                                    
-                <button className="delete-item fa fa-remove" onClick={makeOnDelete(element)} />
-                
-               
-            </li>
-            )
-        }
-        })
-    }
     
-    return( <div>{taskOutput}</div> )
+    return( <div>
+            <h2>{props.category}</h2>
+            <ul class="collection" id="collection-lists">
+                {taskOutput}
+            </ul>
+        </div> )
 }
 
 
