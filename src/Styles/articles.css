@@ -29,6 +29,9 @@ Spinner
   }
 }
 
+a{
+  text-decoration: none;
+}
 .loading {
   width: 6rem;
   height: 6rem;
