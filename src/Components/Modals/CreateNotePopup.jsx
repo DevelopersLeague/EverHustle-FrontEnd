@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../../Styles/notes.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
 const CreateNotePopup = ({ modal, toggle, saveNote }) => {

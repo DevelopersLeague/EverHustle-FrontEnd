@@ -23,7 +23,7 @@ const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj }) => {
         // update states
         setNoteName(noteObj.Name)
         setNoteDesc(noteObj.Description)
-    }, [])
+    }, [noteObj.Description, noteObj.Name])
 
     const handleUpdate = (e) => {
         e.preventDefault();

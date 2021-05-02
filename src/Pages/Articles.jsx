@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useFetch } from "../Hooks/UseFetch";
+import Contact from '../Components/Contact'
+
 import '../Styles/articles.css'
 const Articles = () => {
 
@@ -44,7 +45,7 @@ const Articles = () => {
     }
     return (
         <>
-            <header className="header text-center mt-4 pt-4">
+            <header className="header text-center mt-4 pt-4 article-header">
                 <div>
                     <h3>Articles</h3>
                     <div className="underline mx-auto"></div>
@@ -93,6 +94,8 @@ const Articles = () => {
                 }
                 </section>
             </div>
+
+            <Contact/>
         </>
     )
 }

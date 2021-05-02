@@ -1,5 +1,4 @@
 import NotesSub from '../Components/NotesSub';
-import calendar from '../images/edit calendar.png';
 import React, { useState } from 'react'
 import '../Styles/goals.css'
 function Goals() {
@@ -13,7 +12,7 @@ function Goals() {
     function onFormSubmit(e){
         e.preventDefault()
         console.log(tasks);
-        if(task[0]!= ' ' && task!= '') {
+        if(task[0]!== ' ' && task!== '') {
             alert(`A new Task ${task} is been added.`)
             setTasks(oldTasks=>[...oldTasks,task])
             setTask(''); 
@@ -57,7 +56,7 @@ function Goals() {
                                             <NotesSub  task={tasks} filters={filter} setTasks={setTasks}/>
                                               </ul>
                                             </div>
-                                            <a href="" className="clear-tasks add-task-btn black" onClick={onClearClick}>CLear Tasks</a>                         
+                                            <button className="clear-tasks add-task-btn black" onClick={onClearClick}>CLear Tasks</button>                         
                                             </div>
                                     </div>
                                 </div>

@@ -1,25 +1,78 @@
-import React from 'react'
-import styles from '../Styles/authForm.module.css'
-const Login = () => {
-    return (
-        <div>
-            <form method="POST" autocomplete="off">
-                <div class={styles.form_row}>
-                <input type="text" required autoComplete="off" aria-autoComplete="off" />
-                <span>Username or Email</span>
-                </div>
-                <div class={styles.form_row}>
-                <input type="password" required autoComplete="off" aria-autoComplete="off"/>
-                <span>Password</span> 
-                </div>
-                <div class={styles.form_row}></div>
-                <div class={styles.form_row}>
-                <button type="submit">Login to your Account</button>
-            </div>
-      </form>
-      
-        </div>
-    )
-}
+import React, { useState } from "react";
+import styles from "../Styles/authForm.module.css";
+import { useLoginMutation } from "../Hooks/react-query/auth-hooks";
+import { useHistory } from "react-router-dom";
+import { useAuth } from "../context/auth.context";
+import { useFormik } from "formik";
+import { useMessages } from "../context/message.context";
 
-export default Login
+const Login = () => {
+  const { actions } = useMessages();
+  const errorMessage = actions.getMessages("errorMessage");
+  const { mutate, isLoading } = useLoginMutation();
+  const history = useHistory();
+  const auth = useAuth();
+  const { values, handleChange, handleSubmit } = useFormik({
+    initialValues: { email: "", password: "" },
+    onSubmit: (values, { resetForm }) => {
+      mutate(
+        { ...values },
+        {
+          onSuccess: (data) => {
+            auth.actions.login(data.token);
+            history.push("/notes");
+            resetForm({});
+          },
+        }
+      );
+    },
+  });
+
+  return (
+    <div>
+      <form method="POST" autocomplete="off" onSubmit={handleSubmit}>
+        {errorMessage ? <p>{errorMessage}</p> : null}
+        <div className={styles.form_row}>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            required
+            onChange={(e) => {
+              actions.removeMessages("errorMessage");
+              handleChange(e);
+            }}
+            autoComplete="off"
+            aria-autoComplete="none"
+            value={values.email}
+          />
+          <span>Username or Email</span>
+        </div>
+        <div className={styles.form_row}>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onChange={(e) => {
+              actions.removeMessages("errorMessage");
+              handleChange(e);
+            }}
+            required
+            autoComplete="off"
+            aria-autoComplete="none"
+            value={values.password}
+          />
+          <span>Password</span>
+        </div>
+        <div className={styles.form_row}></div>
+        <div className={styles.form_row}>
+          <button type="submit">
+            {isLoading?"loading...":"log in"}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
