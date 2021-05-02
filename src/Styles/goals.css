@@ -54,8 +54,9 @@ a{
   width: 100%;
 }
 
-.s12{
-  width: 1000px;
+#main-row{
+  padding: 0.5rem;
+  padding-bottom: 0;
 }
 
 .card {
@@ -70,10 +71,14 @@ a{
 .card-title {
   display: block;
   margin-bottom: 1%;
-  font-size: 1.9rem;
+  font-size: 3rem;
   text-align: center;
-  opacity: 0.5;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  opacity: 0.9;
+  font-family: 'Aclonica', sans-serif;
+  color: #FFF;
+  background-color: rgba(30, 214, 214, 1);
+  border-radius: 10px;
+  box-shadow:0px 1px 50px -15px rgba(30, 214, 214, 1);
 }
 .row {
   margin-bottom: 2%;
@@ -102,9 +107,11 @@ label {
   position: absolute;
   top: -1.2rem;
   left: 0;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   cursor: text;
   transition: all ease 1s;
+  font-weight: 700;
+  
 }
 .input-field:hover > .task-label {
     top: 0;
@@ -117,10 +124,11 @@ label {
 }
 .add-task-btn {
   padding: 1% 2% !important;
-  width: 15% !important;
+  /* width: 15% !important; */
   background: rgba(89, 201, 165, 1);
-  font-size: 1rem !important;
+  font-size: 1.2rem !important;
   text-transform: capitalize;
+  font-weight: 700;
   color: #FFF;
   border-radius: 5px;
   cursor: pointer;
@@ -130,6 +138,22 @@ label {
   background: rgba(89, 201, 165, 0.7);
   box-shadow: 1px 1px 10px -2px rgba(0, 0, 0, 0.7)
 }
+input[type="radio"]{
+  font-size: 2em;
+  width: 0.8em;
+  height: 0.7em;
+}
+
+#categoryName{
+  font-size: 1.1em;
+  margin-right: 1em;
+  margin-top: 0.4em;
+  margin-left: 0.2em;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 900;
+  position: relative;
+  top: -0.23em;
+}
 .card-content .row{
   padding-bottom: 3%;
   border-bottom: double 5px rgba(0, 0, 0, 0.2);
@@ -137,6 +161,8 @@ label {
 .card-action {
   padding: 1.5rem;
   padding-top: 0.7rem;
+  box-shadow: 1px 1px 50px -10px rgba(93, 147, 225, 0.7);
+  border-radius: 1em;
 }
 #task-title {
   margin: 0.3em 0;
@@ -162,6 +188,7 @@ label {
   position: relative;
   padding: 0;
   box-shadow: 1px 1px 10px -2px rgba(0, 0, 0, 0.7);
+  
 }
 .collection-item {
   padding: 0.6rem 1.2rem;
@@ -172,6 +199,7 @@ label {
   font-size: 1.4rem;
   box-shadow: 1px 1px 10px -2px rgba(0, 0, 0, 0.7);
   transition: all linear 0.2s; 
+  border-left: solid 1em rgba(93, 147, 225, 0.7);
 }
 .delete-item, .complete-item {
   float: right;
@@ -210,4 +238,18 @@ label {
 
 #task-complete {
   text-decoration: line-through;
+}
+#category-head{
+  font-family: 'Amaranth', sans-serif;
+  color: rgba(93, 147, 225, 1);
+  background-color: rgba(0, 0, 0, 0.07);
+  box-shadow: 1px 1px 10px -2px rgba(0, 0, 0, 0.4);
+  border-radius: 0.6em;
+  padding: 0.2em;
+  padding-left: 0.7em;
+  font-weight: 100;
+  font-size: 2em;
+}
+#collection-list{
+  margin-top: 0; 
 }

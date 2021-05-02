@@ -80,8 +80,8 @@ function NotesSub(props) {
         
     
     return( <div>
-            <h2>{props.category}</h2>
-            <ul class="collection" id="collection-lists">
+            <h2 id="category-head">{props.category}</h2>
+            <ul class="collection" id="collection-list">
                 {taskOutput}
             </ul>
         </div> )

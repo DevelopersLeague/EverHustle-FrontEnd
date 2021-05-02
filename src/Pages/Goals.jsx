@@ -52,24 +52,24 @@ function Goals() {
                                 <div className="card">
                                     <div className="card-content">
                                         <span className="card-title">Goals</span>
-                                        <div className="row">
+                                        <div id="main-row">
                                             {/* <div className={styles.heading}>test heading</div> */}
                                             <form id="task-form" onSubmit={onFormSubmit} >
                                                 <div className="input-field column s12">
                                                     <input type="text" name ="task" id="task" onChange={onTaskChange} value={task} />
                                                     <input type="radio" name="Category" id="Daily" onClick={()=>{setCategoryInput('daily')}}/>
-                                                    <label for="Daily">DAILY</label>
+                                                    <label for="Daily" id="categoryName">DAILY</label>
                                                     <input type="radio" name="Category" id="Weekly" onClick={()=>{setCategoryInput('weekly')}}/>
-                                                    <label for="Weekly">WEEKLY</label>
+                                                    <label for="Weekly" id="categoryName">WEEKLY</label>
                                                     <input type="radio" name="Category" id="Monthly" onClick={()=>{setCategoryInput('monthly')}}/>
-                                                    <label for="Monthly">MONTHLY</label>
+                                                    <label for="Monthly" id="categoryName">MONTHLY</label>
                                                     <label className="task-label" for="task">New Goal</label>
                                                 </div>
                                                 <button class ="add-task-btn" >ADD GOAL</button>
                                             </form>
                                             </div>
                                             <div class="card-action">
-                                            <h4 id="task-title">Goalss</h4>
+                                            {/* <h4 id="task-title">Goalss</h4> */}
                                             <div class="input-field col s12">
                                                 <input type="text" name="filter" id="filter" value={filter} onChange={onFilterChange} />
                                                 <label className="task-label" for="filter">Filter Goals</label>
