@@ -41,7 +41,7 @@ const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj }) => {
                 <ModalHeader toggle={toggle}>Update note</ModalHeader>
                 <ModalBody>
 
-                    <form action="">
+                    {/* <form > */}
                         <div className="form-group">
                             <label htmlFor="note-title">Note title</label>
                             <input type="text" name="note-title" id="note-title" className="form-control" value={noteName} onChange={handleChange}/>
@@ -50,12 +50,12 @@ const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj }) => {
                             <label htmlFor="note-description">Description</label>
                             <textarea name="note-description" id="note-description" cols="30" rows="10" className="form-control" value={noteDesc} onChange={handleChange}></textarea>
                         </div>  
-                    </form>
+                    {/* </form> */}
 
                 </ModalBody>
                 <ModalFooter>
-                <button className="btn-note" onClick={handleUpdate}>Update!</button>{' '}
-                <button className="btn-note" onClick={toggle}>Cancel</button>
+                <button className="btn-note" type="button" onClick={handleUpdate}>Update!</button>{' '}
+                <button className="btn-note" type="button" onClick={toggle}>Cancel</button>
                 </ModalFooter>
             </Modal>
         </div>

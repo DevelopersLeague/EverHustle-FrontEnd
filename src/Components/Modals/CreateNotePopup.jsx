@@ -32,7 +32,7 @@ const CreateNotePopup = ({ modal, toggle, saveNote }) => {
         <div>
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>Create note</ModalHeader>
-                <form action="" onSubmit={handleSave}>
+                {/* <form onSubmit={handleSave}> */}
                 <ModalBody>
 
                     
@@ -48,10 +48,10 @@ const CreateNotePopup = ({ modal, toggle, saveNote }) => {
 
                 </ModalBody>
                 <ModalFooter>
-                <button className="btn-note" type="submit">Create!</button>
+                        <button className="btn-note" type="submit" onClick={handleSave}>Create!</button>
                 <button className="btn-note" onClick={toggle}>Cancel</button>
                 </ModalFooter>
-             </form>
+             {/* </form> */}
             </Modal>
         </div>
     )
