@@ -71,16 +71,16 @@ function Goals() {
                                             <div class="card-action">
                                             <h4 id="task-title">Goalss</h4>
                                             <div class="input-field col s12">
-                                                {/* <input type="text" name="filter" id="filter" value={filter} onChange={onFilterChange} /> */}
-                                                {/* <label className="task-label" for="filter">Filter Goals</label> */}
+                                                <input type="text" name="filter" id="filter" value={filter} onChange={onFilterChange} />
+                                                <label className="task-label" for="filter">Filter Goals</label>
                                             </div>  
                                             <div>                                        
                                                 {
                                                     data?
                                                         (<>
-                                                        <NotesSub  task={data.goals} category='daily'/>
-                                                        <NotesSub  task={data.goals} category='weekly'/>
-                                                        <NotesSub  task={data.goals} category='monthly'/></>)
+                                                        <NotesSub  task={data.goals} category='daily' filters={filter}/>
+                                                        <NotesSub  task={data.goals} category='weekly' filters={filter}/>
+                                                        <NotesSub  task={data.goals} category='monthly' filters={filter}/></>)
                                                         
                                                         :"loading..."
                                                 }  
