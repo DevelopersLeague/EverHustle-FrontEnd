@@ -445,6 +445,15 @@
     padding: 25px;
     border: 1px solid rgba(38, 38, 38, 0.03);
   }
+  nav .menu li .user-btn {
+    width: 100%;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 25px;
+    border: 1px solid rgba(38, 38, 38, 0.03);
+  }
   nav .menu-icon {
     cursor: pointer;
     float: right;
@@ -512,4 +521,16 @@
   background: #49a6e9;
   margin-left: 0rem;
   /* margin-right: 100rem; */
+}
+
+.user-btn{
+  width: 110px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00b7ff;
+  background-color: #0099ff;
+  transition: all ease 0.5s;
+  color: #ffffff;
 }

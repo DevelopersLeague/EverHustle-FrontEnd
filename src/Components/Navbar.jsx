@@ -59,6 +59,9 @@ const Navbar = () => {
             <Link to="/login">Login</Link>
           )}
         </li>
+
+        <li>{authState.user ? <div className="user-btn disabled ml-3 menu-icon">Hello {`${authState.user.firstName} `}</div> : null}</li>
+
       </ul>
     </nav>
   );
