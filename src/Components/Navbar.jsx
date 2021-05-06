@@ -6,7 +6,7 @@ const Navbar = () => {
   const { authState, actions } = useAuth();
   const [nav, setNav] = useState(false);
   const history = useHistory();
-
+  const [menu, setMenu] = useState(false)
   const changeBackground = () => {
     if (window.scrollY >= 50) {
       setNav(true);
@@ -21,29 +21,29 @@ const Navbar = () => {
       <Link to="/" className="logo" style={{ backgroundColor: "inherit" }}>
         <img src={logo} alt="logo" id="logo-img" />
       </Link>
-      <input type="checkbox" id="menu-btn" className="menu-btn" />
-      <label htmlFor="menu-btn" className="menu-icon">
+      <input type="radio" id="menu-btn" className={menu ? "menu-btn" : "null"} style={{display:"none"}}/>
+      <label htmlFor="menu-btn" className="menu-icon" onClick={()=>setMenu(!menu)}>
         <span className="nav-icon"></span>
       </label>
 
       <ul className="menu">
         {/* {authState.user ? <li>hello {authState.user.firstName}</li> : null} */}
-        <li>
+        <li onClick={()=>setMenu(false)}>
           <Link to="/notes">Notes</Link>
         </li>
-        <li>
+        <li onClick={()=>setMenu(false)}>
           <Link to="/articles">Articles</Link>
         </li>
-        <li>
+        <li onClick={()=>setMenu(false)}>
           <Link to="/goals">Goals</Link>
         </li>
-        <li>
+        <li onClick={()=>setMenu(false)}>
           <Link to="/reminders">Reminders</Link>
         </li>
-        <li>
+        <li onClick={()=>setMenu(false)}>
           <Link to="/timers">Timers</Link>
         </li>
-        <li>
+        <li onClick={()=>setMenu(false)}>
           {authState.user ? (
             <Link
               to="/"
