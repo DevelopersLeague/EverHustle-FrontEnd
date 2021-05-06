@@ -67,7 +67,7 @@ const NotesCard = ({ noteObj, index, deleteNote, updateListArray }) => {
                 <div style={{"position": "absolute", "right" : "20px", "bottom" : "20px"}}>
                     <i className="far fa-edit mr-3" style={{ "color": colors[index % 5].primaryColor, "cursor": "pointer" }} onClick={() => setModal(true)}></i>
                     
-                    {deleteMutation.isLoading?"Loading":<i className="fas fa-trash-alt" style = {{"color" : colors[index%5].primaryColor, "cursor" : "pointer"}} onClick = {handleDelete}></i>}
+                    {deleteMutation.isLoading?"Deleting":<i className="fas fa-trash-alt" style = {{"color" : colors[index%5].primaryColor, "cursor" : "pointer"}} onClick = {handleDelete}></i>}
                     
                 </div>
         </div>

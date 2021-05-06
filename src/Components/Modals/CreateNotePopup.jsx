@@ -53,7 +53,7 @@ const CreateNotePopup = ({ modal, toggle, setModal }) => {
 
                 </ModalBody>
                 <ModalFooter>
-                        <button className="btn-note" type="submit" onClick={handleSave}>{createMutation.isLoading?"Loading":"Create"}</button>
+                        <button className="btn-note" type="submit" onClick={handleSave}>{createMutation.isLoading?"Creating...":"Create"}</button>
                 <button className="btn-note" onClick={toggle}>Cancel</button>
                 </ModalFooter>
              {/* </form> */}

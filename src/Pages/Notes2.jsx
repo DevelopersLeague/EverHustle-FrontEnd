@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import CreateNotePopup from '../Components/Modals/CreateNotePopup';
 import NotesCard from '../Components/NotesCard'
-import axios from 'axios'
+import Loading from '../Components/Loading'
 import Contact from '../Components/Contact'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../Styles/notes.css'
@@ -29,7 +29,7 @@ const Notes2 = () => {
             <div className="notes-container">
                 {
                     notesQuery.data?notesQuery.data.notes.map((obj, index) =>
-                        <NotesCard noteObj={obj} index={index} key={obj.id}/>): "loading"
+                        <NotesCard noteObj={obj} index={index} key={obj.id}/>): <Loading/>
                 }
                 
                 

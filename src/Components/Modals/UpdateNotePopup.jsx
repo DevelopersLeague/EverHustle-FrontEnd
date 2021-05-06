@@ -59,7 +59,7 @@ const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj, setModal }) => {
 
                 </ModalBody>
                 <ModalFooter>
-                <button className="btn-note" type="button" onClick={handleUpdate} >{updateMutation.isLoading?"Loading":"Update"}</button>{' '}
+                <button className="btn-note" type="button" onClick={handleUpdate} >{updateMutation.isLoading?"Updating...":"Update"}</button>{' '}
                 <button className="btn-note" type="button" onClick={toggle}>Cancel</button>
                 </ModalFooter>
             </Modal>
