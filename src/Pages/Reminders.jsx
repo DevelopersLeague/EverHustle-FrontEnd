@@ -25,9 +25,9 @@ const Reminders = () => {
   ])
 
   const [showAddEventModal, setShowAddEventModal] = useState(false)
-  const [secondaryColor, setSecondaryColor] = useState('#D7E6EE')
+  const [secondaryColor, setSecondaryColor] = useState('#efefef')
   const [highlightToday, setHighlightToday] = useState(true)
-  const [primaryColor, setPrimaryColor] = useState('#4F6995')
+  const [primaryColor, setPrimaryColor] = useState('#004D80')
 
   const [todayColor, setTodayColor] = useState('#3B3966')
   const [textColor, setTextColor] = useState('#333333')
@@ -37,7 +37,7 @@ const Reminders = () => {
   const [detailWidth, setDetailWidth] = useState(280)
   const [showDetailToggler, setShowDetailToggler] = useState(true)
   const [showSidebarToggler, setShowSidebarToggler] = useState(true)
-  const [onePanelAtATime, setOnePanelAtATime] = useState(false)
+  const [onePanelAtATime, setOnePanelAtATime] = useState(true)
   const [allowDeleteEvent, setAllowDeleteEvent] = useState(true)
   const [allowAddEvent, setAllowAddEvent] = useState(true)
   const [openDetailsOnDateSelection, setOpenDetailsOnDateSelection] = useState(
@@ -100,7 +100,7 @@ const Reminders = () => {
             </header>
             
             <section className="mt-3">
-                <div className="mx-auto">
+                <div className="mx-auto pb-3" style={{zIndex: -10}}>
                     <RevoCalendar
                       events={eventList}
                       date={new Date()}
@@ -191,7 +191,9 @@ const Reminders = () => {
             </Modal>
         </section>
 
-        <Contact/>
+        <div style={{marginTop: "20px"}}>
+          <Contact />
+        </div>
         </>
     )
 }
