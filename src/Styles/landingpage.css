@@ -530,12 +530,22 @@
 }
 
 .user-btn{
-  width: 110px;
+  font-family: calibri;
   height: 40px;
+  line-height: 43px;
+  margin: 3px;
+  padding: 0px 22px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #00b7ff;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #000000;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  transition: 0.2s ease-in-out;
+  text-decoration: none !important;
+  
+  width: 165px;
   background-color: #0099ff;
   transition: all ease 0.5s;
   color: #ffffff;

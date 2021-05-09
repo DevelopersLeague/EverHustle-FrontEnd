@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../images/EverHustle.PNG";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
 import { useAuth } from "../context/auth.context";
 const Navbar = () => {
   const { authState, actions } = useAuth();
@@ -18,7 +18,7 @@ const Navbar = () => {
   window.addEventListener("scroll", changeBackground);
   return (
     <nav className={nav ? "nav active" : "nav"}>
-      <Link to="/" className="logo" style={{ backgroundColor: "inherit" }}>
+      <Link to="/" className="logo" style={{ backgroundColor: "inherit", marginRight: "auto", paddingLeft: "20px" }}>
         <img src={logo} alt="logo" id="logo-img" />
       </Link>
       <input type="radio" id="menu-btn" className={menu ? "menu-btn" : "null"} style={{display:"none"}}/>
@@ -26,23 +26,27 @@ const Navbar = () => {
         <span className="nav-icon"></span>
       </label>
 
-      <ul className="menu">
+      <ul className="menu" style={{paddingRight: "20px"}}>
         {/* {authState.user ? <li>hello {authState.user.firstName}</li> : null} */}
-        <li onClick={()=>setMenu(false)}>
-          <Link to="/notes">Notes</Link>
-        </li>
-        <li onClick={()=>setMenu(false)}>
-          <Link to="/articles">Articles</Link>
-        </li>
-        <li onClick={()=>setMenu(false)}>
-          <Link to="/goals">Goals</Link>
-        </li>
-        <li onClick={()=>setMenu(false)}>
-          <Link to="/reminders">Reminders</Link>
-        </li>
-        <li onClick={()=>setMenu(false)}>
-          <Link to="/timers">Timers</Link>
-        </li>
+        {authState.user ?
+          <>
+          <li onClick={()=>setMenu(false)}>
+          <NavLink to="/notes" activeClassName="active-btn">Notes</NavLink>
+          </li>
+          <li onClick={()=>setMenu(false)}>
+            <NavLink to="/articles" activeClassName="active-btn">Articles</NavLink>
+          </li>
+          <li onClick={()=>setMenu(false)}>
+            <NavLink to="/goals" activeClassName="active-btn">Goals</NavLink>
+          </li>
+          <li onClick={()=>setMenu(false)}>
+            <NavLink to="/reminders" activeClassName="active-btn">Reminders</NavLink>
+          </li>
+          <li onClick={()=>setMenu(false)}>
+            <NavLink to="/timers" activeClassName="active-btn">Timers</NavLink>
+          </li>
+          </>
+          : null}
         <li onClick={()=>setMenu(false)}>
           {authState.user ? (
             <Link

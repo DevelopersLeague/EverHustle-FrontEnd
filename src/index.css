@@ -58,6 +58,7 @@ nav {
   background-color: transparent;
   transition: 0.6s ease-in-out;
   padding-top: 12px;
+  padding-bottom: 9px;
 }
 nav.active {
   box-shadow: 5px 10px 30px rgba(0, 247, 255, 0.157);
@@ -65,6 +66,7 @@ nav.active {
 }
 nav ul {
   display: flex;
+  padding-top: 10px;
 }
 .active {
   background-color: #00b7ff;
@@ -79,14 +81,14 @@ nav ul li a {
   margin: 3px;
   padding: 0px 22px;
   display: flex;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
   color: #000000;
   letter-spacing: 1px;
   border-radius: 3px;
   transition: 0.2s ease-in-out;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 nav ul li a:hover {
   background-color: #00b7ff;
@@ -94,6 +96,13 @@ nav ul li a:hover {
   box-shadow: 5px 10px 30px rgba(2, 238, 255, 0.336);
   transition: all ease 0.2s;
 }
+
+.active-btn{
+  background-color: #00b7ff;
+  color: #ffffff;
+  box-shadow: 5px 10px 30px rgba(2, 238, 255, 0.336);
+}
+
 nav .menu-btn,
 .menu-icon {
   display: none;
@@ -148,3 +157,17 @@ p {
   }
 }
 
+@media (max-width: 600px){
+  
+  .logo{
+    padding: 2px !important;
+  }
+
+  .user-btn{
+    /* display: block; */
+    /* margin-left: 0 !important; */
+    margin-right: -10px !important;
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+  }
+}
