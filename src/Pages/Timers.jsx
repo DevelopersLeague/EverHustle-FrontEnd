@@ -1,37 +1,47 @@
 import React from "react";
-import renderTime from "../Components/TimersSub";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import { useState } from 'react';
+import TimerMain from "../Components/TimerMain"
+import { useState } from 'react'
+import '../Styles/goals.css';
 
 export default function Timers() {
-    const [timeInterval, setTimeInterval] = useState(10);
+    var [timeInterval, setTimeInterval] = useState(0);
+    var dura = 0;
     function setTime(e){
-        setTimeInterval(e.target.value);
-        console.log(timeInterval);
+        dura = e.target.value;
+        //console.log(dura);
     }
     function onFormSubmit(e){
         e.preventDefault();
-        setTime();
+        setTimeInterval(dura);
+        //console.log(timeInterval);
     }
+    if(timeInterval > 0){
+        return(
+            <div className="container">
+            <h1>CountdownCircleTimer</h1>
+            
+            <div className="timer-wrapper">
+                <TimerMain durat={timeInterval} set={setTimeInterval} ></TimerMain>
+                
+            </div>
+        </div>
+        );
+    }
+    if(timeInterval <= 0){
+
     return (
         <div className="container">
             <h1>CountdownCircleTimer</h1>
             
             <div className="timer-wrapper">
-                <form onSubmit={onFormSubmit}>
-                    <input type="number" onChange={setTime}/>  
-                    <input type="submit" value="Submit"/>
-                </form>
-                
-                <CountdownCircleTimer
-                    isPlaying
-                    duration={10}
-                    colors={[["#004777", 0.55], ["#F7B801", 0.40], ["#A30000"]]}
-                    onComplete={() => [false, 1000]}
-                >
-                {renderTime}
-                </CountdownCircleTimer>
+                <form onSubmit={onFormSubmit}>                
+                    <input type="number"  id="task" onChange={setTime}/>  
+                    <label className="task-label" for="task" style={{position: 'none'}}>New Timer</label>
+                    <button className="add-task-btn" type="submit">Submit</button>
+                </form>  
+               
             </div>
         </div>
     )
+}
 }
