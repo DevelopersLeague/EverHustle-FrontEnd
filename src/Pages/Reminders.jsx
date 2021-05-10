@@ -7,7 +7,8 @@ import { useQueryClient } from 'react-query';
 import {Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import RevoCalendar from 'revo-calendar'
 import 'revo-calendar/dist/index.css'
-
+import Loading from '../Components/Loading'
+import { Alert } from 'reactstrap'
 
 const Reminders = () => {
   
@@ -17,35 +18,9 @@ const Reminders = () => {
   const ReminderQuery = useGetAllRemindersQuery()
   const DeleteMutation = useDeleteOneReminderMutation()
   const CreateReminderMutation = useCreateOneReminderMutation()
-  const client = useQueryClient() 
-  /*
-  {
-      "title":"<title of the reminder>" === newEventName
-      "content":"<contents of the reminder>" === newEventText
-      "category":"<category of the reminder>" == nope
-      "timestamp":"<timestamp in the iso format ie YYYY-MM-DDThh:mm:ssTZD (eg 1997-07-16T19:20:30+05:30)>" === date 
-      (1997-07-16 10:30:15)
-  }
+  const client = useQueryClient()
   
-  
-  */
-  // eventlist
-  /*
-  const [eventList, setEventList] = useState([
-    {
-    name: 'Buyout',
-    date: +new Date(),
-    // allday: true,
-      extra: {
-      text: 'ooo some more text i wonder how many values it can hold hmm quite a few I must say, insert a few more to see the limit'
-    }
-    },
-    
-  ])
-  */
-  
-  
-
+  // props hooks
   const [showAddEventModal, setShowAddEventModal] = useState(false)
   const [secondaryColor, setSecondaryColor] = useState('#efefef')
   const [highlightToday, setHighlightToday] = useState(true)
@@ -65,21 +40,19 @@ const Reminders = () => {
   const [openDetailsOnDateSelection, setOpenDetailsOnDateSelection] = useState(
     true
   )
+  const [detailDefault, setDetailDefault] = useState(true)
   
   const [timeFormat24, setTimeFormat24] = useState(true)
   const [showAllDayLabel, setShowAllDayLabel] = useState(false)
   const [detailDateFormat, setDetailDateFormat] = useState('DD/MM/YYYY')
-
+  const [sidebarDefault, setSidebarDefault] = useState(false)
   // evennts
   const [newEventName, setNewEventName] = useState('')
   // creating date obj
   const [newEventDate, setNewEventDate] = useState(new Date())
   
-  
   const [newEventText, setNewEventText] = useState('')
 
-  // will always be 'NA for now'
-  const [category, setCategory] = useState('NA')
     /*
     ===========================================
     CRUD FUNCTIONS
@@ -100,19 +73,19 @@ const Reminders = () => {
       console.log(EventList);
       return EventList;
     }
-  
+
+  const [visible, setVisible] = useState(false);
+
+  const onDismiss = () => setVisible(false);
+
   function deleteEvent(index) {
     console.log(index);
     DeleteMutation.mutate({ id: ReminderQuery.data.reminders[index].id }, {
       onSuccess: () => {
         client.invalidateQueries('reminders')
-        
+        setVisible(!visible)
       }
     })
-    // let temp = eventList
-    // temp.splice(id, 1)  // at position id remove 1 item
-    // setEventList(temp)
-
   }
   
   
@@ -125,7 +98,6 @@ const Reminders = () => {
           setNewEventText('')
       }
     })
-    
   }
 
   
@@ -134,9 +106,10 @@ const Reminders = () => {
     setNewEventText(e.target.value)
   } 
   
+
   
     return (
-        <>
+      <>
             <header className="header text-center mt-4 ">
                 <div className="heading_text">
                     <h3>Reminders</h3>
@@ -144,6 +117,9 @@ const Reminders = () => {
                 <p>You will receive a reminder on the event day</p>
             </header>
             
+        <Alert color="danger" isOpen={visible} toggle={onDismiss} className="ml-3 mr-3">
+          Event has been deleted 
+        </Alert>
             <section className="mt-3">
           <div className="mx-auto pb-3" style={{ zIndex: -10 }}>
             {ReminderQuery.data?
@@ -169,13 +145,13 @@ const Reminders = () => {
                       timeFormat24={timeFormat24}
                       showAllDayLabel={showAllDayLabel}
                       detailDateFormat={detailDateFormat}
-                      
+                      detailDefault={detailDefault}
                       addEvent={(date) => {
                         setNewEventDate(date)
                         setShowAddEventModal(true)
                       }}
-                      
-              /> : "Loading"
+                      sidebarDefault={sidebarDefault}
+              /> : <Loading/>
             }
                 </div>
               <Modal isOpen={showAddEventModal}>
@@ -197,7 +173,7 @@ const Reminders = () => {
                   />
                   </div>
                   <div className="form-group">
-                      <label htmlFor="event-date">Date</label>
+                      <label htmlFor="datePicker" className="pr-2">Date <span>&</span> time</label>
                     <DatePicker
                     id="datePicker"
                     selected={newEventDate}
@@ -207,22 +183,26 @@ const Reminders = () => {
                     }}
                     showTimeSelect
 					          dateFormat='dd/MM/yyyy'
-					          className="form-control"				
-                  />
+					          className="form-control col-md-8"				
+                    />
                   
-                  <label className='timeDisplay form-control form-group' htmlFor='datePicker'>{`${
-                    newEventDate.getHours() <= 9
-                      ? '0' + newEventDate.getHours()
-                      : newEventDate.getHours()
-                  }:${
-                    newEventDate.getMinutes() <= 9
-                      ? '0' + newEventDate.getMinutes()
-                      : newEventDate.getMinutes()
-                    }`}</label>                  
+                    
+                    
+                    {`${
+                      newEventDate.getHours() <= 9
+                        ? '0' + newEventDate.getHours()
+                        : newEventDate.getHours()
+                    }:${
+                      newEventDate.getMinutes() <= 9
+                        ? '0' + newEventDate.getMinutes()
+                        : newEventDate.getMinutes()
+                        }`}
+                    
+                  {/* </label> */}
                 </div>
                 
                 <div className="">
-                  <label htmlFor="event-text">Text </label>
+                  <label htmlFor="event-text" className="text-bold">Text </label>
                   <input
                   className="event-text form-control"				
                     type='text'

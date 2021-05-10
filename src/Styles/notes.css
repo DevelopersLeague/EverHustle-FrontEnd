@@ -50,6 +50,8 @@ button .btn-note{
   transition: 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+
 }
 
 .card-wrapper:hover{
@@ -69,6 +71,7 @@ button .btn-note{
   background-color: #fff;
   flex-direction: column;
   position: relative;
+  overflow: auto;
 }
 
 .card-header{
@@ -101,4 +104,12 @@ button .btn-note{
     height: 100%;
     padding: 40px;
   }
+}
+
+.note-icons{
+  transform: translate(0%, -15%);
+  padding-bottom: 5px !important;
+  padding-left: 75% !important;
+  padding-top: 10px;
+  /* background-color: red; */
 }

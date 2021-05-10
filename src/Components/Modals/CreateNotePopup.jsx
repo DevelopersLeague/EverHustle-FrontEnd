@@ -35,7 +35,7 @@ const CreateNotePopup = ({ modal, toggle, setModal }) => {
 
     return (
         <div>
-            <Modal isOpen={modal} toggle={toggle}>
+            <Modal isOpen={modal} toggle={toggle} style={{display:'flex', justifyContent:'center', alignItems:'center', marginTop: "70px" }}>
                 <ModalHeader toggle={toggle}>Create note</ModalHeader>
                 {/* <form onSubmit={handleSave}> */}
                 <ModalBody>
@@ -47,7 +47,7 @@ const CreateNotePopup = ({ modal, toggle, setModal }) => {
                         </div>
                         <div className="form-group">
                             <label htmlFor="note-description">Description</label>
-                            <textarea name="note-description" id="note-description" cols="30" rows="10" className="form-control" onChange={handleChange} required="required"></textarea>
+                            <textarea name="note-description" id="note-description" cols="20" rows="4" className="form-control" onChange={handleChange} required="required"></textarea>
                         </div>  
                     
 

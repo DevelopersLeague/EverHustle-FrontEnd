@@ -8,13 +8,20 @@ body {
 
   background-color: #ffffff;
   font-family: "Montserrat", sans-serif;
-  scroll-behavior: smooth;
 }
 * {
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar{
+  background: #e8f2ff;
+  width: 5px;
+}
 
+::-webkit-scrollbar-thumb{
+  background: #B3C3CA;
+  /* width: 1px; */
+}
 
 /* 
 ==================================================
@@ -89,14 +96,14 @@ nav ul li a {
   color: #000000;
   letter-spacing: 1px;
   border-radius: 3px;
-  transition: 0.2s ease-in-out;
+  transition: 0.1s ease-in-out;
   text-decoration: none !important;
 }
 nav ul li a:hover {
-  background-color: #00b7ff;
+  background-color: #54ccfc;
   color: #ffffff;
   box-shadow: 5px 10px 30px rgba(2, 238, 255, 0.336);
-  transition: all ease 0.2s;
+  transition: all ease 0.6s;
 }
 
 .active-btn{
@@ -157,6 +164,7 @@ p {
   h4 {
     line-height: 1;
   }
+
 }
 
 @media (max-width: 600px){
@@ -164,7 +172,11 @@ p {
   .logo{
     padding: 2px !important;
   }
-
+  nav ul li a{
+    margin-right: -10px !important;
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+  }
   .user-btn{
     /* display: block; */
     /* margin-left: 0 !important; */
@@ -172,4 +184,5 @@ p {
     margin-top: 2px !important;
     margin-bottom: 2px !important;
   }
+  
 }

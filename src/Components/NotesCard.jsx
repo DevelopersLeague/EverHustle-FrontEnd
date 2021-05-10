@@ -59,18 +59,18 @@ const NotesCard = ({ noteObj, index, deleteNote, updateListArray }) => {
         <div className="card-wrapper mx-sm-0 mr-md-5 mb-sm-4 mt-sm-4">
             {/* {console.log(noteObj)} */}
             <div className = "card-top" style={{"backgroundColor": colors[index%5].primaryColor}}></div>
-            <div className = "note-holder">
+            <div className = "note-holder" style={{"WebkitOverflowScrolling": {"backgroundColor": "#000"}}}>
                 <span className = "card-header" style={{"backgroundColor": colors[index%5].secondaryColor, "borderRadius": "10px"}}>{noteObj.title}</span>
                 {/* may need to write noteName and noteDsc */}
                 <p className = "mt-3">{noteObj.content}</p>
 
-                <div style={{"position": "absolute", "right" : "20px", "bottom" : "20px"}}>
+        </div>
+                <div className="note-icons">
                     <i className="far fa-edit mr-3" style={{ "color": colors[index % 5].primaryColor, "cursor": "pointer" }} onClick={() => setModal(true)}></i>
                     
                     {deleteMutation.isLoading?"Deleting":<i className="fas fa-trash-alt" style = {{"color" : colors[index%5].primaryColor, "cursor" : "pointer"}} onClick = {handleDelete}></i>}
                     
                 </div>
-        </div>
             <UpdateNotePopup modal={modal} toggle={toggle} updateNote={updateNote} noteObj={noteObj} setModal={setModal}/>
         </div>
     )
