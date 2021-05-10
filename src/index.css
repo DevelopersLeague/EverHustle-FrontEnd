@@ -6,13 +6,20 @@ body {
 
   background-color: #ffffff;
   font-family: "Montserrat", sans-serif;
-  scroll-behavior: smooth;
 }
 * {
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar{
+  background: #e8f2ff;
+  width: 5px;
+}
 
+::-webkit-scrollbar-thumb{
+  background: #B3C3CA;
+  /* width: 1px; */
+}
 
 /* 
 ==================================================
@@ -155,6 +162,7 @@ p {
   h4 {
     line-height: 1;
   }
+
 }
 
 @media (max-width: 600px){
@@ -174,4 +182,10 @@ p {
     margin-top: 2px !important;
     margin-bottom: 2px !important;
   }
+  
+  
+  ::-webkit-scrollbar{
+    display: none;
+  }
+
 }
