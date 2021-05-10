@@ -174,7 +174,7 @@ package-lock.json*
 # Local Netlify folder
 .netlify
 
-Screenshots/
+# Screenshots/
 
 Mini_Project_Report*
 

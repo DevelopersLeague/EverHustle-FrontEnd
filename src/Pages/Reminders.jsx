@@ -1,33 +1,55 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import Contact from '../Components/Contact'
-
+import {useGetAllRemindersQuery, useDeleteOneReminderMutation, useCreateOneReminderMutation} from '../Hooks/react-query/reminder-hooks'
+import { useQueryClient } from 'react-query';
 import {Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
 import RevoCalendar from 'revo-calendar'
 import 'revo-calendar/dist/index.css'
 
 
 const Reminders = () => {
-
+  
+  /*
+  react query hooks
+  */
+  const ReminderQuery = useGetAllRemindersQuery()
+  const DeleteMutation = useDeleteOneReminderMutation()
+  const CreateReminderMutation = useCreateOneReminderMutation()
+  const client = useQueryClient() 
+  /*
+  {
+      "title":"<title of the reminder>" === newEventName
+      "content":"<contents of the reminder>" === newEventText
+      "category":"<category of the reminder>" == nope
+      "timestamp":"<timestamp in the iso format ie YYYY-MM-DDThh:mm:ssTZD (eg 1997-07-16T19:20:30+05:30)>" === date 
+      (1997-07-16 10:30:15)
+  }
+  
+  
+  */
   // eventlist
+  /*
   const [eventList, setEventList] = useState([
     {
     name: 'Buyout',
     date: +new Date(),
-    allday: true
-    },
-    {
-    name: 'Reservation',
-    date: "22/04/2021",
+    // allday: true,
+      extra: {
+      text: 'ooo some more text i wonder how many values it can hold hmm quite a few I must say, insert a few more to see the limit'
     }
+    },
+    
   ])
+  */
+  
+  
 
   const [showAddEventModal, setShowAddEventModal] = useState(false)
-  const [secondaryColor, setSecondaryColor] = useState('#D7E6EE')
+  const [secondaryColor, setSecondaryColor] = useState('#efefef')
   const [highlightToday, setHighlightToday] = useState(true)
-  const [primaryColor, setPrimaryColor] = useState('#4F6995')
+  const [primaryColor, setPrimaryColor] = useState('#004D80')
 
   const [todayColor, setTodayColor] = useState('#3B3966')
   const [textColor, setTextColor] = useState('#333333')
@@ -37,7 +59,7 @@ const Reminders = () => {
   const [detailWidth, setDetailWidth] = useState(280)
   const [showDetailToggler, setShowDetailToggler] = useState(true)
   const [showSidebarToggler, setShowSidebarToggler] = useState(true)
-  const [onePanelAtATime, setOnePanelAtATime] = useState(false)
+  const [onePanelAtATime, setOnePanelAtATime] = useState(true)
   const [allowDeleteEvent, setAllowDeleteEvent] = useState(true)
   const [allowAddEvent, setAllowAddEvent] = useState(true)
   const [openDetailsOnDateSelection, setOpenDetailsOnDateSelection] = useState(
@@ -63,32 +85,55 @@ const Reminders = () => {
     CRUD FUNCTIONS
     ==========================================
     */
-  
-  function deleteEvent(id) {
-    var temp = eventList
-    temp.splice(id, 1)  // at position id remove 1 item
-    setEventList(temp)
-  }
-
-  function addEvent() {
-    // close modal once clicked on enter
-    setShowAddEventModal(false)
-    var newEvent = {
-      id: "Some id",
-      name: newEventName,
-      // probably iso strig to be added here
-      date: (+newEventDate),
-    //   category: "NA"
-      extra: {
-        // max 16 chars before overflow
-        text: newEventText
-      }
+    
+    const dataToEventList = (ReminderList) => {
+      let EventList =  ReminderList.map((ReminderItem) => {
+        return {
+          name: ReminderItem.title,
+          // newEventText: ReminderItem.content,
+          extra: {
+            text:  ReminderItem.content,
+          },
+          date: parseInt((new Date(ReminderItem.timestamp).getTime())),
+        }
+      })
+      console.log(EventList);
+      return EventList;
     }
+  
+  function deleteEvent(index) {
+    console.log(index);
+    DeleteMutation.mutate({ id: ReminderQuery.data.reminders[index].id }, {
+      onSuccess: () => {
+        client.invalidateQueries('reminders')
+        
+      }
+    })
+    // let temp = eventList
+    // temp.splice(id, 1)  // at position id remove 1 item
+    // setEventList(temp)
 
-    var temp = eventList
-    temp.push(newEvent)
-    setEventList([...temp])
   }
+  
+  
+  function addEvent() {
+    setShowAddEventModal(false)
+    CreateReminderMutation.mutate({ title: newEventName, content: newEventText, category: "general", timestamp: newEventDate.toISOString() }, {
+      onSuccess: () => {
+        client.invalidateQueries('reminders')
+          setNewEventName('')
+          setNewEventText('')
+      }
+    })
+    
+  }
+
+  
+  const setterText = (e) => {
+    e.preventDefault()
+    setNewEventText(e.target.value)
+  } 
+  
   
     return (
         <>
@@ -100,9 +145,10 @@ const Reminders = () => {
             </header>
             
             <section className="mt-3">
-                <div className="mx-auto">
+          <div className="mx-auto pb-3" style={{ zIndex: -10 }}>
+            {ReminderQuery.data?
                     <RevoCalendar
-                      events={eventList}
+                      events={dataToEventList(ReminderQuery.data.reminders)}
                       date={new Date()}
                       deleteEvent={deleteEvent}
                       highlightToday={highlightToday}
@@ -123,13 +169,17 @@ const Reminders = () => {
                       timeFormat24={timeFormat24}
                       showAllDayLabel={showAllDayLabel}
                       detailDateFormat={detailDateFormat}
+                      
                       addEvent={(date) => {
                         setNewEventDate(date)
                         setShowAddEventModal(true)
                       }}
-                    />
+                      
+              /> : "Loading"
+            }
                 </div>
-                <Modal isOpen={showAddEventModal}>
+              <Modal isOpen={showAddEventModal}>
+                
                 <ModalHeader >Add your own event: </ModalHeader>
                 {/* <form action=""> */}
                 <ModalBody>
@@ -156,8 +206,8 @@ const Reminders = () => {
                         setNewEventDate(date)
                     }}
                     showTimeSelect
-					dateFormat='dd/MM/yyyy'
-					className="form-control"				
+					          dateFormat='dd/MM/yyyy'
+					          className="form-control"				
                   />
                   
                   <label className='timeDisplay form-control form-group' htmlFor='datePicker'>{`${
@@ -177,13 +227,13 @@ const Reminders = () => {
                   className="event-text form-control"				
                     type='text'
                     value={newEventText}
-                    onChange={(e) => setNewEventText(e.target.value)}
+                    onChange={setterText}
                   />
 				</div>
 							
                 </ModalBody>
                 <ModalFooter>
-				<button className="btn-note colorPickerBtn" disabled={newEventName === ''} onClick={addEvent}>Create!</button>
+				        <button className="btn-note colorPickerBtn" disabled={newEventName === ''} onClick={addEvent} >Create!</button>
                 <button className="btn-note" onClick={()=> setShowAddEventModal(false)}>Cancel</button>
 				</ModalFooter>
 					{/* <div /> */}
@@ -191,7 +241,9 @@ const Reminders = () => {
             </Modal>
         </section>
 
-        <Contact/>
+        <div style={{marginTop: "20px"}}>
+          <Contact />
+        </div>
         </>
     )
 }

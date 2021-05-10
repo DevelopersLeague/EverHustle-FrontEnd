@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import '../../Styles/notes.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {useUpdateOneNoteMutation} from '../../Hooks/react-query/notes-hooks'
+import {useQueryClient} from 'react-query'
+const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj, setModal }) => {
 
-
-const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj }) => {
-
-    const [noteName, setNoteName] = useState('')
-    const [noteDesc, setNoteDesc] = useState('')
+    const [noteName, setNoteName] = useState(noteObj.title)
+    const [noteDesc, setNoteDesc] = useState(noteObj.content)
+    const updateMutation = useUpdateOneNoteMutation()
+    const client = useQueryClient() // for managing cache
 
     const handleChange = (e) => {
         
@@ -19,20 +21,23 @@ const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj }) => {
             setNoteDesc(value)
     }
 
+    /*
     useEffect(() => {
         // update states
         setNoteName(noteObj.Name)
         setNoteDesc(noteObj.Description)
     }, [noteObj.Description, noteObj.Name])
-
+    */
     const handleUpdate = (e) => {
-        e.preventDefault();
-        let tempObj = {}
-        // creating property
-        tempObj['Name'] = noteName
-        tempObj['Description'] = noteDesc
-        // saveNote(noteObj)
-        updateNote(tempObj)
+        // e.preventDefault();
+        updateMutation.mutate({id: noteObj.id ,title: noteName, content: noteDesc }, {
+            onSuccess: () => {
+                client.invalidateQueries('notes')
+                setModal(false)
+            }
+        })
+        
+        // updateNote(tempObj)
     }
 
     return (
@@ -41,7 +46,7 @@ const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj }) => {
                 <ModalHeader toggle={toggle}>Update note</ModalHeader>
                 <ModalBody>
 
-                    <form action="">
+                    {/* <form > */}
                         <div className="form-group">
                             <label htmlFor="note-title">Note title</label>
                             <input type="text" name="note-title" id="note-title" className="form-control" value={noteName} onChange={handleChange}/>
@@ -50,12 +55,12 @@ const UpdateNotePopup = ({ modal, toggle, updateNote, noteObj }) => {
                             <label htmlFor="note-description">Description</label>
                             <textarea name="note-description" id="note-description" cols="30" rows="10" className="form-control" value={noteDesc} onChange={handleChange}></textarea>
                         </div>  
-                    </form>
+                    {/* </form> */}
 
                 </ModalBody>
                 <ModalFooter>
-                <button className="btn-note" onClick={handleUpdate}>Update!</button>{' '}
-                <button className="btn-note" onClick={toggle}>Cancel</button>
+                <button className="btn-note" type="button" onClick={handleUpdate} >{updateMutation.isLoading?"Updating...":"Update"}</button>{' '}
+                <button className="btn-note" type="button" onClick={toggle}>Cancel</button>
                 </ModalFooter>
             </Modal>
         </div>

@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import '../../Styles/notes.css';
+import {useCreateOneNoteMutation} from '../../Hooks/react-query/notes-hooks'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { useQueryClient } from 'react-query';
 
+const CreateNotePopup = ({ modal, toggle, setModal }) => {
 
-const CreateNotePopup = ({ modal, toggle, saveNote }) => {
-
+    const createMutation = useCreateOneNoteMutation()
     const [noteName, setNoteName] = useState('')
     const [noteDesc, setNoteDesc] = useState('')
-
+    const client = useQueryClient() // for managing cache
     const handleChange = (e) => {
-        const name = e.target.name
-        const value = e.target.value
-        
+        const {name, value} = e.target 
+        // if name attribute is coming from note-title, set value to noteName
+        // else it's coming from desc set value to setNoteDesc
         if (name === "note-title") {
             setNoteName(value)
         }
@@ -22,17 +24,20 @@ const CreateNotePopup = ({ modal, toggle, saveNote }) => {
 
     const handleSave = () => {
         // e.preventDefault()
-        let noteObj = {}
-        noteObj["Name"] = noteName
-        noteObj["Description"] = noteDesc
-        saveNote(noteObj)
+        createMutation.mutate({ title: noteName, content: noteDesc, category: "general" }, {
+            onSuccess: () => {
+                client.invalidateQueries('notes')
+                setModal(false)
+        }})
+            // title, content, category
+    
     }
 
     return (
         <div>
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>Create note</ModalHeader>
-                <form action="" onSubmit={handleSave}>
+                {/* <form onSubmit={handleSave}> */}
                 <ModalBody>
 
                     
@@ -48,10 +53,10 @@ const CreateNotePopup = ({ modal, toggle, saveNote }) => {
 
                 </ModalBody>
                 <ModalFooter>
-                <button className="btn-note" type="submit">Create!</button>
+                        <button className="btn-note" type="submit" onClick={handleSave}>{createMutation.isLoading?"Creating...":"Create"}</button>
                 <button className="btn-note" onClick={toggle}>Cancel</button>
                 </ModalFooter>
-             </form>
+             {/* </form> */}
             </Modal>
         </div>
     )

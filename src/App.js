@@ -21,7 +21,9 @@ function App() {
           <LandingPage />
         </Route>
         <Route path="/notes">
-          <Notes />
+          <AuthGuard to="/login">
+            <Notes />
+          </AuthGuard>
         </Route>
         <Route path="/articles">
           <Articles />
