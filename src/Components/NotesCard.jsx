@@ -64,13 +64,13 @@ const NotesCard = ({ noteObj, index, deleteNote, updateListArray }) => {
                 {/* may need to write noteName and noteDsc */}
                 <p className = "mt-3">{noteObj.content}</p>
 
-                <div style={{"position": "absolute", "right" : "20px", "bottom" : "20px"}}>
+        </div>
+                <div className="note-icons">
                     <i className="far fa-edit mr-3" style={{ "color": colors[index % 5].primaryColor, "cursor": "pointer" }} onClick={() => setModal(true)}></i>
                     
                     {deleteMutation.isLoading?"Deleting":<i className="fas fa-trash-alt" style = {{"color" : colors[index%5].primaryColor, "cursor" : "pointer"}} onClick = {handleDelete}></i>}
                     
                 </div>
-        </div>
             <UpdateNotePopup modal={modal} toggle={toggle} updateNote={updateNote} noteObj={noteObj} setModal={setModal}/>
         </div>
     )
