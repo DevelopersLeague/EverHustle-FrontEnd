@@ -2,11 +2,17 @@ import React from "react";
 import TimerMain from "../Components/TimerMain"
 import { useState } from 'react'
 import DisplayTime from "../Components/DisplayTime"
+import {useEffect} from "react";
 import '../Styles/goals.css';
 
 export default function Timers() {
     
-    var [timeInterval, setTimeInterval] = useState(0);
+    let [timeInterval, setTimeInterval] = useState(0);
+    const [currentDateStr, setCurrentDateStr] = useState('');
+    useEffect(()=>{
+        setCurrentDateStr((new Date()).toISOString().split("T")[0]);
+    }, [])
+
     var dura = 0;
     function setTime(e){
         dura = e.target.value;
@@ -40,7 +46,7 @@ export default function Timers() {
                     <button className="add-task-btn" type="submit">Start Timer</button>
                 </form>  
             </div>
-            <DisplayTime dateStr={(new Date()).toISOString().split("T")[0]}/>
+            {currentDateStr?<DisplayTime dateStr={currentDateStr}/>:'Loading'}
         </div>
     )
 }

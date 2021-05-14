@@ -2,6 +2,7 @@ import React from 'react'
 import renderTime from "../Components/TimersSub";
 import { CountdownCircleTimer } from "react-countdown-circle-timer"
 import {useCreateOneFocustimeMutation} from "../Hooks/react-query/focustime-hooks"
+import { useState } from 'react'
 import {useQueryClient} from "react-query"
 import '../Styles/goals.css';
 
@@ -32,8 +33,10 @@ function secondToString(timeInSecs){
 }
 
 function TimerMain(props) {
+    var myTimer;
     var dura = 0;
     dura = props.durat;
+    var [stopDuration, setstopDuration ]= useState(0);
     const mutation = useCreateOneFocustimeMutation();
     const client = useQueryClient();
     
@@ -47,15 +50,24 @@ function TimerMain(props) {
                 >
                     {renderTime}                                        
             </CountdownCircleTimer>  
-            <button class="add-task-btn"  onClick={()=>{props.set(0)}}>Stop</button>
+            <button class="add-task-btn"  onClick={()=>{props.set(0)
+            clearInterval(myTimer);
+            console.log(stopDuration);
+            }}>Stop</button>
             {
                         setTimeout(function(){
                             console.log("hello");
                             var timeString = secondToString(dura);                             
                             mutation.mutate({time: timeString, date: ((new Date()).toISOString().split("T")[0])}, {onSuccess: ()=>{client.invalidateQueries("focustime")}})
+                            clearInterval(myTimer);
                             props.set(0);
                         }, ((dura)*1000))
             }
+            {/* {
+                myTimer = setInterval(function(){
+                    setstopDuration(stopDuration+1);
+                }, 1000)
+            } */}
         </div>
         
     )
