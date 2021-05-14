@@ -9,7 +9,7 @@ const Articles = () => {
     // const display = productive;
     const url1 = 'https://hn.algolia.com/api/v1/search?query=productivity&page=0';
     const url2 = 'https://hn.algolia.com/api/v1/search?query=selfhelp&page=0';
-    const url3 = 'https://hn.algolia.com/api/v1/search?query=motivation&page=0';
+    const url3 = 'https://hn.algolia.com/api/v1/search?query=motivate&page=0';
     
     const fetchSingle = async () => {
         try {
