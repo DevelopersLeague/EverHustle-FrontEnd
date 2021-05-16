@@ -7,7 +7,7 @@ import {
 } from "../Hooks/react-query/focustime-hooks";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import renderTime from "../Components/TimersSub";
-import "../Styles/goals.css";
+import styles from "../Styles/timer.module.css";
 
 let interval;
 let timeout;
@@ -57,94 +57,121 @@ export default function Timers() {
   }, []);
 
   return (
-    <div className="container">
-      <h1>CountdownCircleTimer</h1>
-      {!isRunning ? (
-        <div className="timer-wrapper">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setTotalTime(hrminsecTosec(hrInput, minInput, secInput));
-              console.log(hrInput, minInput, secInput);
-              setCurrentTime(0);
-              setIsRunning(true);
-              setHrInput(0);
-              setMinInput(0);
-              setSecInput(0);
-            }}
-          >
-            <input
-              type="number"
-              value={hrInput}
-              onChange={(e) => {
-                setHrInput(e.target.value);
-              }}
-              id="task"
-            />
-            <input
-              type="number"
-              value={minInput}
-              onChange={(e) => {
-                setMinInput(e.target.value);
-              }}
-              id="task"
-            />
-            <input
-              type="number"
-              value={secInput}
-              onChange={(e) => {
-                setSecInput(e.target.value);
-              }}
-              id="task"
-            />
-            <label
-              className="task-label"
-              for="task"
-              style={{ position: "none" }}
-            >
-              New Timer
-            </label>
-            <button className="add-task-btn" type="submit">
-              Start Timer
-            </button>
-          </form>
-          {dateStr ? (
-            !mutation.isLoading ? (
-              <DateDisplay dateStr={dateStr} />
-            ) : (
-              "loading"
-            )
+    <div className={styles.bodyBack}>
+      <div className={styles.container}>
+        <div className={styles.backImage}>
+          <h1 className={styles.heading}>Countdown Timer</h1>
+          {!isRunning ? (
+            <div className={styles.timerWrapper}>
+              <span className={styles.description}>
+                Set your Productive time and <br></br>keep track of all the time
+                set
+              </span>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setTotalTime(hrminsecTosec(hrInput, minInput, secInput));
+                  console.log(hrInput, minInput, secInput);
+                  setCurrentTime(0);
+                  setIsRunning(true);
+                  setHrInput(0);
+                  setMinInput(0);
+                  setSecInput(0);
+                }}
+              >
+                <input
+                  type="number"
+                  value={hrInput}
+                  id="hours"
+                  className={styles.inputN}
+                  onChange={(e) => {
+                    setHrInput(e.target.value);
+                  }}
+                />
+
+                <input
+                  type="number"
+                  value={minInput}
+                  id="minutes"
+                  className={styles.inputN}
+                  onChange={(e) => {
+                    setMinInput(e.target.value);
+                  }}
+                />
+
+                <input
+                  type="number"
+                  value={secInput}
+                  id="seconds"
+                  className={styles.inputN}
+                  onChange={(e) => {
+                    setSecInput(e.target.value);
+                  }}
+                ></input>
+                <br></br>
+                {/* <label
+                  className={styles.taskLabel}
+                  for="task"
+                  style={{ position: "none" }}
+                >
+                  New Timer
+                </label> */}
+                <label htmlFor="hours" id={styles.labelN}>
+                  Hours
+                </label>
+                <label htmlFor="minutes" id={styles.labelN}>
+                  Minutes
+                </label>
+                <label for="seconds" id={styles.labelN}>
+                  Seconds
+                </label>
+                <br></br>
+                <button className={styles.addTaskBtn} type="submit">
+                  Start Timer
+                </button>
+              </form>
+              {dateStr ? (
+                !mutation.isLoading ? (
+                  <DateDisplay dateStr={dateStr} />
+                ) : (
+                  "loading"
+                )
+              ) : (
+                "loading"
+              )}
+            </div>
           ) : (
-            "loading"
+            <>
+              <span className={styles.description}>
+                The clock is ticking. Increase your productivity
+              </span>
+              <Display
+                setCurrentTime={setCurrentTime}
+                totalTime={totalTime}
+                setIsRunning={setIsRunning}
+                currentTime={currentTime}
+                mutation={mutation}
+                dateStr={dateStr}
+              />
+              <button
+                className={styles.stopTaskBtn}
+                onClick={() => {
+                  clearInterval(interval);
+                  clearTimeout(timeout);
+                  //   console.log(currentTime);
+                  setIsRunning(false);
+                  mutation.mutate({
+                    date: dateStr,
+                    time: secondToString(currentTime),
+                  });
+                }}
+              >
+                {mutation.isLoading ? "loading" : "stop"}
+              </button>
+            </>
           )}
         </div>
-      ) : (
-        <>
-          <Display
-            setCurrentTime={setCurrentTime}
-            totalTime={totalTime}
-            setIsRunning={setIsRunning}
-            currentTime={currentTime}
-            mutation={mutation}
-            dateStr={dateStr}
-          />
-          <button
-            className="add-task-button"
-            onClick={() => {
-              clearInterval(interval);
-              clearTimeout(timeout);
-              //   console.log(currentTime);
-              setIsRunning(false);
-              mutation.mutate({
-                date: dateStr,
-                time: secondToString(currentTime),
-              });
-            }}
-          >
-            {mutation.isLoading ? "loading" : "stop"}
-          </button>
-        </>
-      )}
+      </div>
     </div>
   );
 }
@@ -182,14 +209,16 @@ const Display = (props) => {
   return (
     <div>
       {props.totalTime - props.currentTime}
-      <CountdownCircleTimer
-        isPlaying
-        duration={props.totalTime}
-        colors={[["#004777", 0.55], ["#F7B801", 0.4], ["#A30000"]]}
-        onComplete={() => [false, 1000]}
-      >
-        {renderTime}
-      </CountdownCircleTimer>
+      <div className={styles.timerRound}>
+        <CountdownCircleTimer
+          isPlaying
+          duration={props.totalTime}
+          colors={[["#004777", 0.55], ["#F7B801", 0.4], ["#A30000"]]}
+          onComplete={() => [false, 1000]}
+        >
+          {renderTime}
+        </CountdownCircleTimer>
+      </div>
     </div>
   );
 };
