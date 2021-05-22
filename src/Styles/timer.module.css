@@ -33,6 +33,7 @@ a {
   /* background-color: #000; */
   background-color: rgba(0, 0, 0, 0.3);
   box-shadow: 0px 30px 50px -20px rgba(169, 134, 216, 1);
+  animation: beats 1s ease-in-out 0s infinite alternate;
   width: 11.25rem;
   position: relative;
   transition: all ease 1s;
@@ -51,10 +52,10 @@ a {
   font-weight: 700;
 }
 .addTaskBtn {
-  padding: 1% 2% !important;
+  padding: 1% 2%;
   /* width: 15% !important; */
   background: rgba(184, 84, 247, 0.5);
-  font-size: 1rem !important;
+  font-size: 1rem;
   text-transform: capitalize;
   font-weight: 700;
   color: #fff;
@@ -118,7 +119,13 @@ a {
   background-repeat: no-repeat;
   position: relative;
   padding: 2rem;
+  left: 3rem;
   box-sizing: border-box;
+  animation: clock 5s ease 1s 1 alternate-reverse;
+  float: right;
+  /* height: 350px; */
+  height: 22rem;
+  width: 25rem;
 }
 
 p {
@@ -152,4 +159,71 @@ p {
 }
 .heading {
   color: rgb(238, 230, 248);
+}
+
+@keyframes beats {
+  0% {
+    box-shadow: 0px 0px 50px -20px rgba(169, 134, 216, 1);
+  }
+  50% {
+    box-shadow: 0px 20px 60px -20px rgba(169, 134, 216, 1);
+  }
+  100% {
+    box-shadow: 0px 40px 70px -20px rgba(169, 134, 216, 1);
+  }
+}
+
+/* @keyframes clock {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateZ(-20deg);
+  }
+  50% {
+    transform: rotateZ(-20deg);
+  }
+  75% {
+    transform: rotateZ(20deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+} */
+
+@media (max-width: 620px) {
+  .heading {
+    font-size: 1.8rem;
+  }
+  .description {
+    font-size: 0.7em;
+    width: 100%;
+  }
+  .head2 {
+    font-size: 1.3em;
+  }
+}
+@media (max-width: 1020px) {
+  .backImage {
+    display: none;
+  }
+}
+@media (max-width: 390px) {
+  .container {
+    width: 100%;
+  }
+  .inputN {
+    font-size: 1rem;
+    display: block;
+  }
+  #labelN {
+    display: block;
+    top: -14em;
+    margin: 2em;
+    margin-bottom: 2.3em;
+  }
+  .addTaskBtn {
+    font-size: 0.7rem;
+    padding: 2%;
+  }
 }

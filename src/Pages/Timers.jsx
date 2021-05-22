@@ -59,126 +59,141 @@ export default function Timers() {
   return (
     <div className={styles.bodyBack}>
       <div className={styles.container}>
-        <div className={styles.backImage}>
-          <h1 className={styles.heading}>Countdown Timer</h1>
-          {!isRunning ? (
-            <div className={styles.timerWrapper}>
-              <span className={styles.description}>
-                Set your Productive time and <br></br>keep track of all the time
-                set
-              </span>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setTotalTime(hrminsecTosec(hrInput, minInput, secInput));
-                  console.log(hrInput, minInput, secInput);
-                  setCurrentTime(0);
-                  setIsRunning(true);
-                  setHrInput(0);
-                  setMinInput(0);
-                  setSecInput(0);
+        <div className={styles.backImage}></div>
+        <h1 className={styles.heading}>Countdown Timer</h1>
+        {!isRunning ? (
+          <div className={styles.timerWrapper}>
+            <span className={styles.description}>
+              Set your Productive time and <br></br>keep track of all the time
+              set
+            </span>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setTotalTime(hrminsecTosec(hrInput, minInput, secInput));
+                console.log(hrInput, minInput, secInput);
+                setCurrentTime(0);
+                setIsRunning(true);
+                setHrInput(0);
+                setMinInput(0);
+                setSecInput(0);
+              }}
+            >
+              <input
+                type="number"
+                value={hrInput}
+                id="hours"
+                className={styles.inputN}
+                onChange={(e) => {
+                  setHrInput(e.target.value);
                 }}
-              >
-                <input
-                  type="number"
-                  value={hrInput}
-                  id="hours"
-                  className={styles.inputN}
-                  onChange={(e) => {
-                    setHrInput(e.target.value);
-                  }}
-                />
+              />
 
-                <input
-                  type="number"
-                  value={minInput}
-                  id="minutes"
-                  className={styles.inputN}
-                  onChange={(e) => {
-                    setMinInput(e.target.value);
-                  }}
-                />
+              <input
+                type="number"
+                value={minInput}
+                id="minutes"
+                className={styles.inputN}
+                onChange={(e) => {
+                  setMinInput(e.target.value);
+                }}
+              />
 
-                <input
-                  type="number"
-                  value={secInput}
-                  id="seconds"
-                  className={styles.inputN}
-                  onChange={(e) => {
-                    setSecInput(e.target.value);
-                  }}
-                ></input>
-                <br></br>
-                {/* <label
+              <input
+                type="number"
+                value={secInput}
+                id="seconds"
+                className={styles.inputN}
+                onChange={(e) => {
+                  setSecInput(e.target.value);
+                }}
+              ></input>
+              <br></br>
+              {/* <label
                   className={styles.taskLabel}
                   for="task"
                   style={{ position: "none" }}
                 >
                   New Timer
                 </label> */}
-                <label htmlFor="hours" id={styles.labelN}>
-                  Hours
-                </label>
-                <label htmlFor="minutes" id={styles.labelN}>
-                  Minutes
-                </label>
-                <label for="seconds" id={styles.labelN}>
-                  Seconds
-                </label>
-                <br></br>
-                <button className={styles.addTaskBtn} type="submit">
-                  Start Timer
-                </button>
-              </form>
-              {dateStr ? (
-                !mutation.isLoading ? (
-                  <DateDisplay dateStr={dateStr} />
-                ) : (
-                  "loading"
-                )
+              <label htmlFor="hours" id={styles.labelN}>
+                Hours
+              </label>
+              <label htmlFor="minutes" id={styles.labelN}>
+                Minutes
+              </label>
+              <label for="seconds" id={styles.labelN}>
+                Seconds
+              </label>
+              <br></br>
+              <button
+                className={styles.addTaskBtn}
+                id={styles.descriptions}
+                type="submit"
+              >
+                Start Timer
+              </button>
+            </form>
+            {dateStr ? (
+              !mutation.isLoading ? (
+                <DateDisplay dateStr={dateStr} />
               ) : (
                 "loading"
-              )}
-            </div>
-          ) : (
-            <>
-              <span className={styles.description}>
-                The clock is ticking. Increase your productivity
-              </span>
-              <Display
-                setCurrentTime={setCurrentTime}
-                totalTime={totalTime}
-                setIsRunning={setIsRunning}
-                currentTime={currentTime}
-                mutation={mutation}
-                dateStr={dateStr}
-              />
-              <button
-                className={styles.stopTaskBtn}
-                onClick={() => {
-                  clearInterval(interval);
-                  clearTimeout(timeout);
-                  //   console.log(currentTime);
-                  setIsRunning(false);
-                  mutation.mutate({
-                    date: dateStr,
-                    time: secondToString(currentTime),
-                  });
-                }}
-              >
-                {mutation.isLoading ? "loading" : "stop"}
-              </button>
-            </>
-          )}
-        </div>
+              )
+            ) : (
+              "loading"
+            )}
+          </div>
+        ) : (
+          <>
+            <span className={styles.description}>
+              The clock is ticking. Increase your productivity
+            </span>
+            <Display
+              setCurrentTime={setCurrentTime}
+              totalTime={totalTime}
+              setIsRunning={setIsRunning}
+              currentTime={currentTime}
+              mutation={mutation}
+              dateStr={dateStr}
+            />
+            <button
+              className={styles.stopTaskBtn}
+              onClick={() => {
+                clearInterval(interval);
+                clearTimeout(timeout);
+                //   console.log(currentTime);
+                setIsRunning(false);
+                mutation.mutate({
+                  date: dateStr,
+                  time: secondToString(currentTime),
+                });
+              }}
+            >
+              {mutation.isLoading ? "loading" : "stop"}
+            </button>
+          </>
+        )}
       </div>
     </div>
+    // </div>
   );
 }
 
 const DateDisplay = (props) => {
   const query = useGetTotalFocustimeByDateQuery(props.dateStr);
-  return <>{query.isLoading ? "loading" : <p>{query.data.time}</p>}</>;
+  return (
+    <>
+      <div>
+        <h4 className={styles.head2}>Today's Total Time Tracked</h4>
+        {query.isLoading ? (
+          "loading"
+        ) : (
+          <p className={styles.description}>{query.data.time}</p>
+        )}
+      </div>
+    </>
+  );
 };
 
 const Display = (props) => {
