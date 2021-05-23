@@ -128,9 +128,9 @@ a {
   width: 25rem;
 }
 
-p {
+/* p {
   display: inline-block;
-}
+} */
 
 .inputN {
   display: inline-block;
@@ -159,6 +159,18 @@ p {
 }
 .heading {
   color: rgb(238, 230, 248);
+}
+#timeSpent {
+  font-size: 1.6rem;
+  /* letter-spacing: 0.2rem; */
+}
+.timeFormat {
+  color: #fff;
+  font-size: 1rem;
+  text-shadow: 2px 2px 4px #fff;
+  /* position: relative;
+  top: -1rem;
+  left: -0.4rem; */
 }
 
 @keyframes beats {

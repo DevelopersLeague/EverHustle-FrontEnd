@@ -11,6 +11,7 @@ import styles from "../Styles/timer.module.css";
 
 let interval;
 let timeout;
+let words;
 
 const hrminsecTosec = (hr, min, sec) => {
   return JSON.parse(hr) * 3600 + JSON.parse(min) * 60 + JSON.parse(sec);
@@ -186,11 +187,19 @@ const DateDisplay = (props) => {
     <>
       <div>
         <h4 className={styles.head2}>Today's Total Time Tracked</h4>
-        {query.isLoading ? (
-          "loading"
-        ) : (
-          <p className={styles.description}>{query.data.time}</p>
-        )}
+        {query.isLoading
+          ? "loading"
+          : (((words = query.data.time.split(":")), console.log(words)),
+            (
+              <div>
+                <p className={styles.description} id={styles.timeSpent}>
+                  {words[0]}
+                  <span className={styles.timeFormat}>Hr</span> :{words[1]}
+                  <span className={styles.timeFormat}>Min</span> :{words[2]}
+                  <span className={styles.timeFormat}>Sec</span>
+                </p>
+              </div>
+            ))}
       </div>
     </>
   );
@@ -223,7 +232,8 @@ const Display = (props) => {
   }, []);
   return (
     <div>
-      {props.totalTime - props.currentTime}
+      <br></br>
+      {/* {props.totalTime - props.currentTime} */}
       <div className={styles.timerRound}>
         <CountdownCircleTimer
           isPlaying
