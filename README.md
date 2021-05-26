@@ -10,12 +10,12 @@ various ways of boosting their productivity thorugh it's features.
 **Try it out!!** - ***http://everhustle.netlify.app/***
 
 ## Features and Functionalities 😃
-- 2 factor authentication using email
 - Keep sticky notes
 - Get event reminders via email
 - Set daily, weekly and monthly goals
 - Keep a track of your productive time
 - Postive articles to keep you motivated 
+- Email authentication preventing phishing and forged emails
 
 ## Tech Stack 💻
 
