@@ -3,19 +3,61 @@
 
 ![EverHustle](https://socialify.git.ci/DevelopersLeague/EverHustle-FrontEnd/image?description=1&font=Inter&forks=1&language=1&stargazers=1&theme=Dark)
 
-<!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
+## Project Abstract 💡
+The corona-virus pandemic has resulted in a drop in productivity for most people, they are not accustomed to doing ‘work from home’. People are witnessing drop in their productivity. To help people regain their potential, EverHustle is developed. EverHustle is an open-sourced productivity web application that tries to help society with
+various ways of boosting their productivity thorugh it's features.
 
-## Technology Stack 🛠️
+**Try it out!!** - ***http://everhustle.netlify.app/***
 
-- **Coding Languages**: Javascript (MERN Stack)
+## Features and Functionalities 😃
+- 2 factor authentication using email
+- Keep sticky notes
+- Get event reminders via email
+- Set daily, weekly and monthly goals
+- Keep a track of your productive time
+- Postive articles to keep you motivated 
 
-- **Tools & Technologies**: React.js, HTML, CSS
+## Tech Stack 💻
 
-- **Project Management Tools**: Git/Github, Markdown (Documentation)
+ - [React.js](https://reactjs.org/)
+ - [Node.js](https://nodejs.org/en/)
+ - [Express.js](https://expressjs.com/)
+ - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+ - [React Bootstrap](https://react-bootstrap.github.io/)
+ - [React-Query](https://react-query.tanstack.com/)
+ - [RevoCalendar](https://github.com/gjmolter/revo-calendar)
 
-### `yarn start`
+## Third-party API 👨‍💻
+- [Algolia](https://www.algolia.com/doc/rest-api/search/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation ⚡
 
-<!-- have to add .env sample -->
+ **1. Clone this repo by running the following command :-**
+ ```
+  git clone https://github.com/DevelopersLeague/EverHustle-FrontEnd
+  cd EverHustle-FrontEnd
+ ```
+ 
+ **2. Now install all the required packages by running the following commands :-**
+ ```
+  npm install 
+ ```
+ **3. Now start the react by running the following command :-**
+ ```
+  npm start
+ ```
+ **3. Create a `.env` file in the project root folder and copy the format of `.env.sample` file.**
+
+   - `.env.sample` file contains all the environment variables required for running the project.
+   
+   
+ **4.** **🎉  Open your browser and go to  `https://localhost:3000`**
+
+## Contributors 🤝
+ - **Aniket More**
+    - [LinkedIn](https://www.linkedin.com/in/aniket-more-2b97571b1/) | [Twitter](https://twitter.com/aniket_more311) 
+ - **Chirag Mahajan**
+    - [Linkedin](https://www.linkedin.com/in/chirag-mahajan-b09144137/) | [GitLab](https://gitlab.com/chiragmahajan3101)
+ - **Shyren More**
+    - [LinkedIn](https://www.linkedin.com/in/shyrenmore/) | [Gmail](mailto:shyren.more30@gmail.com)
+    
