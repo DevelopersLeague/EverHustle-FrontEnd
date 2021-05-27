@@ -30,28 +30,30 @@ various ways of boosting their productivity thorugh it's features.
 ## Third-party API 👨‍💻
 - [Algolia](https://www.algolia.com/doc/rest-api/search/)
 
-## Installation ⚡
-
- **1. Clone this repo by running the following command :-**
+## Local setup ⚡
+ 
+ **1. Clone [server repo](https://github.com/DevelopersLeague/EverHustle-server) & follow the steps mention [here](https://github.com/DevelopersLeague/EverHustle-server#how-to-run-the-server-locally) to run server locally:-**
+ 
+ **2. Clone this repo by running the following command :-**
  ```
   git clone https://github.com/DevelopersLeague/EverHustle-FrontEnd
   cd EverHustle-FrontEnd
  ```
  
- **2. Now install all the required packages by running the following commands :-**
+ **3. Now install all the required packages by running the following commands :-**
  ```
   npm install 
  ```
- **3. Now start the react by running the following command :-**
+ **4. Now start the react by running the following command :-**
  ```
   npm start
  ```
- **3. Create a `.env` file in the project root folder and copy the format of `.env.sample` file.**
+ **5. Create a `.env` file in the project root folder and copy the format of `.env.sample` file.**
 
    - `.env.sample` file contains all the environment variables required for running the project.
    
    
- **4.** **🎉  Open your browser and go to  `https://localhost:3000`**
+ **6.** **🎉  Open your browser and go to  `https://localhost:3000`**
 
 ## Contributors 🤝
  - **Aniket More**
