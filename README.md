@@ -17,6 +17,12 @@ various ways of boosting their productivity thorugh it's features.
 - Postive articles to keep you motivated 
 - Email authentication preventing phishing and forged emails
 
+<!-- https://youtu.be/u9JnFdxIUgM -->
+
+## Demo video 📺
+
+[![Demo video](http://img.youtube.com/vi/u9JnFdxIUgM/0.jpg)](http://www.youtube.com/watch?v=u9JnFdxIUgM "EverHustle demo")
+
 ## Tech Stack 💻
 
  - [React.js](https://reactjs.org/)
